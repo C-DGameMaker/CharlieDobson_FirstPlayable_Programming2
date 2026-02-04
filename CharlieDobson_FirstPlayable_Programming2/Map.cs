@@ -14,7 +14,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         private ConsoleColor[] _mapColors = { ConsoleColor.Green, ConsoleColor.DarkGreen, ConsoleColor.Blue, ConsoleColor.Gray };
         public string _map = "MapFile.txt";
-        private string[] _inGameMap;
+        public string[] _inGameMap;
 
         /*
          * Borders
@@ -27,15 +27,35 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Will load the map immedietly
-        public void DrawMap()
+        public void DrawMap(int scale)
         {
+            int _mapWidth = _inGameMap.Length;
+            int _mapLength = _inGameMap[0].Length;
 
+            for (int _border = 0; _border < _mapLength * scale + 2; _border++)
+            {
+                if (_border == 0)
+                {
+                    Console.Write("╔");
+                }
+
+                else if (_border == _mapLength * scale + 1)
+                {
+                    Console.Write("╗");
+                }
+                else
+                {
+                    Console.Write("═");
+                }
+            }
+            Console.Write("\n");
         }
 
         //Will load the map but makes it animated (Used for intro)
-        public void DrawMapButAnimated()
+        public void DrawMapButAnimated(int scale)
         {
-
+            int _mapWidth = _inGameMap.Length;
+            int _mapLength = _inGameMap[0].Length;
         }
     }
 }
