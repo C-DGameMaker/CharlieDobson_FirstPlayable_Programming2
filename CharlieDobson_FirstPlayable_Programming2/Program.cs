@@ -11,23 +11,37 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public static Player _gamePlayer;
         public bool _isDead = false;
         public bool _playAgain;
+
+        public static Map _gameMap = new Map();
         static void Main(string[] args)
         {
-            Console.WriteLine("Insert a name");
-            string _writtenName = Console.ReadLine();
+            _gameMap.LoadMap();
+            //Console.WriteLine("Insert a name");
+            //string _writtenName = Console.ReadLine();
 
-            _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: 10, startingYPos: 10);
-            Character _test = new Character(maxHealth: 10, startingXPos: 10, startingYPos: 10);
-            _test.ShowHUD();
-            Console.WriteLine();
-            _gamePlayer.ShowHUD();
+            Random _random = new Random();
 
-            while (true)
-            {
+            //int _randomXPosition = _random.Next(1, _gameMap._mapWidth);
+            //int _randomYPosition = _random.Next(1, _gameMap._mapLength);
 
-                Console.WriteLine("Would you like to play again?");
-                Console.WriteLine("    Y/N    ");
-            }
+
+            
+
+            //_gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
+            //_gamePlayer.ShowHUD();
+            //Console.ReadKey(true);
+
+
+            //_gameMap.DrawMapButAnimated();
+
+            //Console.ReadKey(true);
+
+            //while (true)
+            //{
+
+            //    Console.WriteLine("Would you like to play again?");
+            //    Console.WriteLine("    Y/N    ");
+            //}
         }
 
         public void Update()

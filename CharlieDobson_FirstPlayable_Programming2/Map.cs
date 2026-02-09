@@ -16,6 +16,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public string _map = "MapFile.txt";
         public string[] _inGameMap;
 
+        public int _mapWidth;
+        public int _mapLength;
+
         /*
          * Borders
          * ╔ ╗ ═ ║ ╚ ╝
@@ -24,24 +27,82 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public void LoadMap()
         {
              _inGameMap = System.IO.File.ReadAllLines(path: _map);
+
+             _mapWidth = _inGameMap.Length;
+             _mapLength = _inGameMap[0].Length;
         }
 
+       
         //Will load the map immedietly
-        public void DrawMap(int scale)
+        public void DrawMap()
         {
-            int _mapWidth = _inGameMap.Length;
-            int _mapLength = _inGameMap[0].Length;
 
-            for (int _border = 0; _border < _mapLength * scale + 2; _border++)
+            for (int _border = 0; _border < _mapLength + 2; _border++)
             {
                 if (_border == 0)
                 {
                     Console.Write("╔");
                 }
 
-                else if (_border == _mapLength * scale + 1)
+                else if (_border == _mapLength + 1)
                 {
                     Console.Write("╗");
+                }
+                else
+                {
+                    Console.Write("═");
+                }
+            }
+            Console.Write("\n");
+
+            for(int w = 0; w < _mapWidth; w++)
+            {
+                
+                    Console.Write("║");
+
+                    for (int l = 0; l < _mapLength; l++)
+                    {
+                        char _mapTile = _inGameMap[w][l];
+
+                        if (_mapTile == '▒')
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                        }
+                        else if (_mapTile == '░')
+                        {
+                            Console.BackgroundColor = ConsoleColor.Green;
+                        }
+                        else if (_mapTile == '▓')
+                        {
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                        }
+                        else if (_mapTile == '█')
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        }
+
+                           Console.Write(_mapTile);
+                    }
+
+                    Console.ResetColor();
+                    Console.Write("║");
+                    Console.Write("\n");
+                
+
+            }
+
+            for (int _border = 0; _border < _mapLength  + 2; _border++)
+            {
+                if (_border == 0)
+                {
+                    Console.Write("╚");
+                }
+
+                else if (_border == _mapLength  + 1)
+                {
+                    Console.Write("╝");
                 }
                 else
                 {
@@ -52,10 +113,84 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Will load the map but makes it animated (Used for intro)
-        public void DrawMapButAnimated(int scale)
+        public void DrawMapButAnimated()
         {
-            int _mapWidth = _inGameMap.Length;
-            int _mapLength = _inGameMap[0].Length;
+
+            for (int _border = 0; _border < _mapLength + 2; _border++)
+            {
+                if (_border == 0)
+                {
+                    Console.Write("╔");
+                }
+
+                else if (_border == _mapLength + 1)
+                {
+                    Console.Write("╗");
+                }
+                else
+                {
+                    Console.Write("═");
+                }
+            }
+
+            Thread.Sleep(100);
+            Console.Write("\n");
+
+            for (int w = 0; w < _mapWidth; w++)
+            {
+                {
+                    Console.Write("║");
+
+                    for (int l = 0; l < _mapLength; l++)
+                    {
+                        char _mapTile = _inGameMap[w][l];
+
+                        if (_mapTile == '▒')
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                        }
+                        else if (_mapTile == '░')
+                        {
+                            Console.BackgroundColor = ConsoleColor.Green;
+                        }
+                        else if (_mapTile == '▓')
+                        {
+                            Console.BackgroundColor = ConsoleColor.Gray;
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                        }
+                        else if (_mapTile == '█')
+                        {
+                            Console.BackgroundColor = ConsoleColor.DarkGreen;
+                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                        }
+                            Console.Write(_mapTile);
+                    }
+                    Console.ResetColor();
+                    Console.Write("║");
+                    Thread.Sleep(100);
+                    Console.Write("\n");
+                }
+                
+
+            }
+
+            for (int _border = 0; _border < _mapLength + 2; _border++)
+            {
+                if (_border == 0)
+                {
+                    Console.Write("╚");
+                }
+
+                else if (_border == _mapLength + 1)
+                {
+                    Console.Write("╝");
+                }
+                else
+                {
+                    Console.Write("═");
+                }
+            }
+            Console.Write("\n");
         }
     }
 }
