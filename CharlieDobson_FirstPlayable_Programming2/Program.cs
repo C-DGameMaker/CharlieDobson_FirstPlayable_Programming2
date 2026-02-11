@@ -30,12 +30,23 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _isOccupied = new bool[_gameMap._inGameMap.Length, _gameMap._inGameMap[0].Length];
             Random _random = new Random();
 
-            //Lets you make a name for the player
-            Console.WriteLine("Insert a name");
-            string _writtenName = Console.ReadLine();
+            ////Lets you make a name for the player
+            //Console.WriteLine("Insert a name");
+            string _writtenName = "Charlie";
             //Randomizes your starting position
-            int _randomXPosition = _random.Next(1, _gameMap._mapLength);
-            int _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+            int _randomXPosition; 
+            int _randomYPosition;
+
+            while (true)
+            {
+                _randomXPosition = _random.Next(1, _gameMap._mapLength);
+                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+
+                if (_isOccupied[_randomXPosition, _randomYPosition] == false)
+                {
+                    break;
+                }
+            }
 
             //Creates player properly, then sets the spot as occupied amd shows your hud
             _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
