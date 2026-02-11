@@ -10,6 +10,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         public Enemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
         {
+            _health = new Health(_maxHealth);
+            _position = new Position(_startingXPos, _startingYPos);
         }
     }
 }

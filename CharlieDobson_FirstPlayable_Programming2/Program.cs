@@ -11,6 +11,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
     internal class Program
     {
         static Player _gamePlayer;
+        static List<Enemy> _enemies = new List<Enemy>();
         static bool _isDead = false;
         static bool _playAgain;
         static int _currentTurn = 0;
@@ -18,7 +19,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         static int _xMovement = 0;
         static int _yMovement = 0;
 
-         static Map _gameMap = new Map();
+        static Map _gameMap = new Map();
         static void Main(string[] args)
         {
             _gameMap.LoadMap();
@@ -36,11 +37,29 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.ReadKey(true);
             Console.Clear();
 
+            int enemies = _random.Next(1, 5);
+
+            for (int i = 0; i < enemies; i++)
+            {
+                _randomXPosition = _random.Next(1, _gameMap._mapLength);
+                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                int _enemyHealth = _random.Next(10, 51);
+
+                Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
+
+                _enemies.Add(_newEnemy);
+            }
+
+
+
+
             _gameMap.DrawMapButAnimated();
             Console.WriteLine("Press anything to start");
 
             Console.ReadKey(true);
             Console.Clear();
+
+            
 
             while (true)
             {
@@ -118,7 +137,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _gameMap.DrawMap();
             _gamePlayer.ShowHUD();
             Console.SetCursorPosition(_gamePlayer._position._xPos, _gamePlayer._position._yPos);
+            Console.BackgroundColor = ConsoleColor.Magenta;
             Console.Write("*");
+            Console.ResetColor();
         }
     }
 }
