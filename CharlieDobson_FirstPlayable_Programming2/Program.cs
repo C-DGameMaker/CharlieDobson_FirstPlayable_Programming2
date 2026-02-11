@@ -40,6 +40,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine("Press anything to start");
 
             Console.ReadKey(true);
+            Console.Clear();
 
             while (true)
             {
@@ -57,7 +58,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _yMovement = 0;
             ConsoleKey input = ConsoleKey.NoName;
 
-            while(input == ConsoleKey.NoName)
+            while (input == ConsoleKey.NoName)
             {
                 input = Console.ReadKey(true).Key;
 
@@ -67,22 +68,26 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 }
             }
 
-            if (input == ConsoleKey.W)
-            {
-                _yMovement--;
-            }
-            if (input == ConsoleKey.S)
-            {
-                _yMovement++;
-            }
-            if (input == ConsoleKey.A)
-            {
-                _xMovement--;
-            }
-            if (input == ConsoleKey.D)
-            {
-                _xMovement++;
-            }
+                if (input == ConsoleKey.W)
+                {
+                    _yMovement--;
+                }
+                if (input == ConsoleKey.S)
+                {
+                    _yMovement++;
+                }
+                if (input == ConsoleKey.A)
+                {
+                    _xMovement--;
+                }
+                if (input == ConsoleKey.D)
+                {
+                    _xMovement++;
+                }
+            
+           
+
+            
 
         }
 
@@ -93,12 +98,23 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 _isDead = true;
             }
 
+            if (_gamePlayer._position._xPos + _xMovement > 0 && _gamePlayer._position._xPos + _xMovement < _gameMap._mapLength + 1)
+            {
+                if(_gamePlayer._position._yPos + _yMovement > 0 && _gamePlayer._position._yPos + _yMovement < _gameMap._mapWidth + 1)
+                {
+                    _gamePlayer._position.ChangePosition(newX: _xMovement, newY: _yMovement);
+                }
+            }
 
-            _gamePlayer.MovePosition(_xMovement, _yMovement);
+            _currentTurn++;
+
+
         }
 
         static void Draw()
         {
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
             _gameMap.DrawMap();
             _gamePlayer.ShowHUD();
             Console.SetCursorPosition(_gamePlayer._position._xPos, _gamePlayer._position._yPos);

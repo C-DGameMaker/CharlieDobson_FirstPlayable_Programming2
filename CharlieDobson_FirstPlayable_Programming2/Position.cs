@@ -16,5 +16,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _xPos = xPosition;
             _yPos = yPosition;
         }
+
+        public void ChangePosition(int newX, int newY)
+        {
+            _xPos += newX;
+            _yPos += newY;
+        }
     }
 }
