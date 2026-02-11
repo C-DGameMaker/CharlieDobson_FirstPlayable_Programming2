@@ -8,10 +8,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Position
     {
-        public int _maxWidth;
-        public int _maxLength;
-        public Map _map;
-
         public int _xPos;
         public int _yPos;
 
@@ -19,12 +15,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             _xPos = xPosition;
             _yPos = yPosition;
-        }
-
-        public void SetMax()
-        {
-            _maxWidth = _map._mapWidth + 1;
-            _maxLength = _map._mapLength + 1;
         }
     }
 }

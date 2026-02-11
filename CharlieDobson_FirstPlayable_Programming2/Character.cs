@@ -17,9 +17,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _position = new Position(xPosition: startingXPos, yPosition: startingYPos);
         }
 
-        public virtual void MovePosition()
+        public virtual void MovePosition(int moveX, int moveY)
         {
-            
+           
         }
 
         public virtual void ShowHUD()
