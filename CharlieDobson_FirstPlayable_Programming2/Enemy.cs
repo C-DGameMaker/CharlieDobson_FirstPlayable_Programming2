@@ -8,6 +8,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Enemy : Character
     {
+        //Makes Enemy
         public Enemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
         {
             _health = new Health(_maxHealth);

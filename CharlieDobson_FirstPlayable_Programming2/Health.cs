@@ -19,6 +19,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             CurrentHealth = MaxHealth;
         }
 
+        //Will heal and never go above max health
         public void Heal(int _amount)
         {
             CurrentHealth = CurrentHealth + _amount;
@@ -29,10 +30,18 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
         }
 
+        //Will cause the character to take damage, will never go below 0
         public void TakeDamage(int _amount)
         {
             CurrentHealth = CurrentHealth - _amount;
+
+            if(CurrentHealth < 0)
+            {
+                CurrentHealth = 0;
+            }
         }
+
+        //Resets Health
 
         public void ResetHealt()
         {

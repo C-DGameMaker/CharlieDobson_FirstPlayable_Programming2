@@ -8,15 +8,18 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Position
     {
+        //Because you need a X and a Y for movement
         public int _xPos;
         public int _yPos;
 
+        //Constructor
         public Position(int xPosition, int yPosition)
         {
             _xPos = xPosition;
             _yPos = yPosition;
         }
 
+        //Lets the program move the characters
         public void ChangePosition(int newX, int newY)
         {
             _xPos += newX;

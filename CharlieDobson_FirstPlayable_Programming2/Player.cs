@@ -8,6 +8,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Player : Character
     {
+        //You can name your player so I added this
         public string _playerName;
 
         public Player(string name, int maxHealth, int startingXPos, int startingYPos) : base(maxHealth, startingXPos, startingYPos)
@@ -17,6 +18,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _position = new Position(startingXPos, startingYPos);
         }
 
+        //Shows the HUD of the player
         public override void ShowHUD()
         {
             string _upperCaseName = _playerName.ToUpper();
