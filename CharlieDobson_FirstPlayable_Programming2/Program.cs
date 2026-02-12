@@ -23,16 +23,31 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //For movement but more so for map stuff
         static Map _gameMap = new Map();
         static bool[,] _isOccupied;
+        static Random _random = new Random();
         static void Main(string[] args)
         {
             //Startin stuff, just loads the map and does stuff. 
             _gameMap.LoadMap();
             _isOccupied = new bool[_gameMap._inGameMap.Length, _gameMap._inGameMap[0].Length];
-            Random _random = new Random();
+            //for(int i = 0; i < _gameMap._mapWidth; i++)
+            //{
+            //    for(int j = 0; j < _gameMap._mapLength; j++)
+            //    {
+            //        char _mapTile = _gameMap._inGameMap[i][j];
 
-            ////Lets you make a name for the player
-            //Console.WriteLine("Insert a name");
-            string _writtenName = "Charlie";
+            //        if (_mapTile == '▓')
+            //        {
+            //            _isOccupied[i, j] = true;
+            //        }
+                    
+            //    }
+            //}
+           
+
+            //Lets you make a name for the player
+            Console.WriteLine("Insert a name");
+            string _writtenName = Console.ReadLine();
+
             //Randomizes your starting position
             int _randomXPosition; 
             int _randomYPosition;
@@ -158,6 +173,77 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     }
                     
                 }
+            }
+
+            _xMovement = 0;
+            _yMovement = 0;
+
+            foreach (Enemy em in _enemies)
+            {
+                int _enemyMovementX = 0;
+                int _enemyMovementY = 0;
+                int _movement = _random.Next(1,7);
+                
+                if(_movement == 1)
+                {
+                    _enemyMovementX++;
+                }
+                else if (_movement == 2)
+                {
+                    _enemyMovementX--;
+                }
+                else if (_movement == 3)
+                {
+                    _enemyMovementY++;
+                }
+                else if (_movement == 4)
+                {
+                    _enemyMovementY--;
+                }
+                else if (_movement == 5)
+                {
+                    if(_gamePlayer._position._xPos < em._position._xPos)
+                    {
+                        _enemyMovementX--;
+                    }
+                    else
+                    {
+                        _enemyMovementX++;
+                    }
+                }
+                else if (_movement == 6)
+                {
+                    if (_gamePlayer._position._yPos < em._position._yPos)
+                    {
+                        _enemyMovementY--;
+                    }
+                    else
+                    {
+                        _enemyMovementY++;
+                    }
+                }
+                else 
+                {
+                    return;
+                }
+
+                if (em._position._xPos + _enemyMovementX > 0 && em._position._xPos + _enemyMovementX < _gameMap._mapLength + 1)
+                {
+                    if (_gamePlayer._position._yPos + _enemyMovementY > 0 && em._position._yPos + _enemyMovementY < _gameMap._mapWidth + 1)
+                    {
+                        if (_isOccupied[_gamePlayer._position._xPos + _enemyMovementX, em._position._yPos + _enemyMovementX] == false)
+                        {
+                            //Sets your current position to be off, then changes, then sets it as occupied
+                            _isOccupied[em._position._xPos, em._position._yPos] = false;
+                            em._position.ChangePosition(newX: _enemyMovementX, newY: _enemyMovementY);
+                            _isOccupied[em._position._xPos, em._position._yPos] = true;
+                        }
+
+                    }
+                }
+
+                 _enemyMovementX = 0;
+                 _enemyMovementY = 0;
             }
 
             _currentTurn++;
