@@ -43,7 +43,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         //Resets Health
 
-        public void ResetHealt()
+        public void ResetHealth()
         {
             CurrentHealth = MaxHealth;
         }

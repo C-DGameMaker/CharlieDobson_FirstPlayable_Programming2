@@ -14,5 +14,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _health = new Health(_maxHealth);
             _position = new Position(_startingXPos, _startingYPos);
         }
+
+        public override void ShowHUD()
+        {
+            Console.WriteLine($"~~~HEALTH~~~");
+            Console.WriteLine($"   {_health.CurrentHealth}/{_health.MaxHealth}");
+        }
+
+        
     }
 }
