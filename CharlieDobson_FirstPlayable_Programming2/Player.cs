@@ -30,5 +30,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine($"   ({_position._xPos},{_position._yPos})");
 
         }
+
     }
 }

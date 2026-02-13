@@ -28,21 +28,22 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             //Startin stuff, just loads the map and does stuff. 
             _gameMap.LoadMap();
-            _isOccupied = new bool[_gameMap._inGameMap.Length, _gameMap._inGameMap[0].Length];
-            //for(int i = 0; i < _gameMap._mapWidth; i++)
-            //{
-            //    for(int j = 0; j < _gameMap._mapLength; j++)
-            //    {
-            //        char _mapTile = _gameMap._inGameMap[i][j];
 
-            //        if (_mapTile == '▓')
-            //        {
-            //            _isOccupied[i, j] = true;
-            //        }
-                    
-            //    }
-            //}
-           
+            _isOccupied = new bool[_gameMap._inGameMap.Length, _gameMap._inGameMap[0].Length];
+            for (int i = 1; i < _gameMap._mapWidth; i++)
+            {
+                for (int j = 1; j < _gameMap._mapLength; j++)
+                {
+                    char _mapTile = _gameMap._inGameMap[i][j];
+
+                    if (_mapTile == '▓')
+                    {
+                        _isOccupied[i, j] = true;
+                    }
+
+                }
+            }
+
 
             //Lets you make a name for the player
             Console.WriteLine("Insert a name");
@@ -54,8 +55,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             while (true)
             {
-                _randomXPosition = _random.Next(1, _gameMap._mapLength);
-                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                _randomXPosition = _random.Next(1, 31);
+                _randomYPosition = _random.Next(1, 21);
 
                 if (_isOccupied[_randomXPosition, _randomYPosition] == false)
                 {
@@ -77,8 +78,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 while (true)
                 {
-                    _randomXPosition = _random.Next(1, _gameMap._mapLength);
-                    _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                    _randomXPosition = _random.Next(1, 31);
+                    _randomYPosition = _random.Next(1, 21);
 
                     if (_isOccupied[_randomXPosition, _randomYPosition] == false)
                     {
@@ -171,6 +172,17 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         _gamePlayer._position.ChangePosition(newX: _xMovement, newY: _yMovement);
                         _isOccupied[_gamePlayer._position._xPos, _gamePlayer._position._yPos] = true;
                     }
+                    foreach(Enemy em in _enemies)
+                    {
+                        if(_gamePlayer._position._xPos + _xMovement == em._position._xPos)
+                        {
+                            if (_gamePlayer._position._yPos + _yMovement == em._position._yPos)
+                            {
+                                int damage = _random.Next(5, 16);
+                                em._health.TakeDamage(damage);
+                            }
+                        }
+                    }
                     
                 }
             }
@@ -231,12 +243,21 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 {
                     if (_gamePlayer._position._yPos + _enemyMovementY > 0 && em._position._yPos + _enemyMovementY < _gameMap._mapWidth + 1)
                     {
-                        if (_isOccupied[_gamePlayer._position._xPos + _enemyMovementX, em._position._yPos + _enemyMovementX] == false)
+                        if (_isOccupied[em._position._xPos + _enemyMovementX, em._position._yPos + _enemyMovementX] == false)
                         {
-                            //Sets your current position to be off, then changes, then sets it as occupied
+                            //Sets enemies current position to be off, then changes, then sets it as occupied
                             _isOccupied[em._position._xPos, em._position._yPos] = false;
                             em._position.ChangePosition(newX: _enemyMovementX, newY: _enemyMovementY);
                             _isOccupied[em._position._xPos, em._position._yPos] = true;
+                        }
+
+                        if (em._position._xPos + _enemyMovementX == _gamePlayer._position._xPos)
+                        {
+                            if (em._position._yPos + _enemyMovementY == _gamePlayer._position._yPos)
+                            {
+                                int damage = _random.Next(1, 11);
+                                _gamePlayer._health.TakeDamage(damage);
+                            }
                         }
 
                     }
