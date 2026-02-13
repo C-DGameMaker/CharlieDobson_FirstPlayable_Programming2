@@ -109,6 +109,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 Update();
                 Draw();
             }
+
+            Console.WriteLine("YOU DIED");
+
+            _gamePlayer.ShowHUD();
+
+            Console.WriteLine();
+            Console.WriteLine("Exit to play again");
+            Console.ReadKey(true);
         }
 
         //Takes your input, then turns that into movement
