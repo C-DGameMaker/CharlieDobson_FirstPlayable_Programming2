@@ -57,8 +57,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             while (true)
             {
-                _randomXPosition = _random.Next(1, 30);
-                _randomYPosition = _random.Next(1, 20);
+                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
                 if (_isOccupied[_randomYPosition, _randomXPosition] == false)
                 {
@@ -80,8 +80,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 while (true)
                 {
-                    _randomXPosition = _random.Next(1, 31);
-                    _randomYPosition = _random.Next(1, 21);
+                    _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                    _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
                     if (_isOccupied[_randomYPosition, _randomXPosition] == false)
                     {
@@ -108,11 +108,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             while (_isDead == false)
             {
+                Draw();
                 ProcessInput();
                 Update();
-                Draw();
+                
             }
-
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine("YOU DIED");
 
             _gamePlayer.ShowHUD();
@@ -172,9 +174,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 _isDead = true;
             }
 
-            if (_gamePlayer._position._xPos + _xMovement > 0 && _gamePlayer._position._xPos + _xMovement < _gameMap._mapLength + 1)
+            if (_gamePlayer._position._xPos + _xMovement > 0 && _gamePlayer._position._xPos + _xMovement < _gameMap._mapLength)
             {
-                if(_gamePlayer._position._yPos + _yMovement > 0 && _gamePlayer._position._yPos + _yMovement < _gameMap._mapWidth + 1)
+                if(_gamePlayer._position._yPos + _yMovement > 0 && _gamePlayer._position._yPos + _yMovement < _gameMap._mapWidth)
                 {
                     if (_isOccupied[_gamePlayer._position._yPos + _yMovement, _gamePlayer._position._xPos + _xMovement] == false)
                     {
@@ -250,9 +252,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     return;
                 }
 
-                if (em._position._xPos + _enemyMovementX > 0 && em._position._xPos + _enemyMovementX < _gameMap._mapLength + 1)
+                if (em._position._xPos + _enemyMovementX > 0 && em._position._xPos + _enemyMovementX < _gameMap._mapLength)
                 {
-                    if (em._position._yPos + _enemyMovementY > 0 && em._position._yPos + _enemyMovementY < _gameMap._mapWidth + 1)
+                    if (em._position._yPos + _enemyMovementY > 0 && em._position._yPos + _enemyMovementY < _gameMap._mapWidth)
                     {
                         if (_isOccupied[em._position._yPos + _enemyMovementY, em._position._xPos + _enemyMovementX] == false)
                         {
@@ -273,11 +275,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                         if(em._health.CurrentHealth <= 0)
                         {
-                            _isOccupied[em._position._xPos, em._position._yPos] = false;
+                            _isOccupied[em._position._yPos, em._position._xPos] = false;
                             while (true)
                             {
-                                _randomXPosition = _random.Next(1, 31);
-                                _randomYPosition = _random.Next(1, 21);
+                                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                                _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
                                 if (_isOccupied[_randomYPosition, _randomXPosition] == false)
                                 {
