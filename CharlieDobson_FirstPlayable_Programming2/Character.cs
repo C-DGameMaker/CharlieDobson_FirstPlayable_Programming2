@@ -30,7 +30,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         }
 
-        
+        //Lets the program move the characters
+        public void ChangePosition(int newX, int newY)
+        {
+            _position._xPos += newX;
+            _position._yPos += newY;
+        }
+
+
 
     }
 }
