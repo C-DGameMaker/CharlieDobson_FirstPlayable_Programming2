@@ -6,7 +6,6 @@ using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
@@ -26,7 +25,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //MAKE IT SO I CAN READ THE MAP YIPEEEEE
         public void LoadMap()
         {
-             _inGameMap = System.IO.File.ReadAllLines(path: _map);
+             _inGameMap = File.ReadAllLines(path: _map);
 
              _mapWidth = _inGameMap.Length;
              _mapLength = _inGameMap[0].Length;
