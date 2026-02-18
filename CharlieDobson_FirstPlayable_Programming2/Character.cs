@@ -26,11 +26,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Basic hud before I changed it for Player
         public virtual string GetHUDString()
         {
-            Console.WriteLine($"~~~HEALTH~~~");
-            Console.WriteLine($"   {_health.CurrentHealth}/{_health.MaxHealth}");
-            Console.WriteLine("");
-            Console.WriteLine("~~~POSITION~~~");
-            Console.WriteLine($"   ({_position._xPos},{_position._yPos})");
+            _hudString = $"~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth} \n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos})";
 
             return _hudString;
 

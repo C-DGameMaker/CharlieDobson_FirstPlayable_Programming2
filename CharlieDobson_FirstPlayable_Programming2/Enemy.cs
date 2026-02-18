@@ -18,8 +18,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public override string GetHUDString()
         {
-            Console.WriteLine($"~~~HEALTH~~~");
-            Console.WriteLine($"   {_health.CurrentHealth}/{_health.MaxHealth}");
+            _hudString = $"~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n";
 
             return _hudString;
 

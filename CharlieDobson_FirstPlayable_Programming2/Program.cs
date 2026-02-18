@@ -70,7 +70,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             //Creates player properly, then sets the spot as occupied amd shows your hud
             _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
             _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
-            _gamePlayer.ShowHUD();
+            
             Console.ReadKey(true);
             Console.Clear();
 
@@ -118,7 +118,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.SetCursorPosition(0, 0);
             Console.WriteLine("YOU DIED");
 
-            _gamePlayer.ShowHUD();
 
             Console.WriteLine();
             Console.WriteLine("Exit to play again");
@@ -302,19 +301,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Draws the game
         static void Draw()
         {
-            Console.Clear();
             Console.SetCursorPosition(0, 0);
             _gameMap.DrawMap();
-            _gamePlayer.ShowHUD();
+            WriteHUD();
             Console.WriteLine();
 
-
-            foreach (Enemy em in _enemies)
-            {
-                Console.WriteLine($"~~~ENEMY~~~");
-                em.ShowHUD();
-                Console.WriteLine();
-            }
 
             Console.SetCursorPosition(_gamePlayer._position._xPos, _gamePlayer._position._yPos);
             Console.BackgroundColor = ConsoleColor.Magenta;
@@ -327,6 +318,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 Console.Write("&");
             }
             Console.ResetColor();
+        }
+
+        static void WriteHUD()
+        {
+            Console.SetCursorPosition(35, 0);
+            Console.Write(_gamePlayer.GetHUDString());
         }
 
       

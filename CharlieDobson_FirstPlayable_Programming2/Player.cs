@@ -22,12 +22,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public override string GetHUDString()
         {
             string _upperCaseName = _playerName.ToUpper();
-            Console.WriteLine($"{_upperCaseName}'S HUD");
-            Console.WriteLine($"~~~HEALTH~~~");
-            Console.WriteLine($"   {_health.CurrentHealth}/{_health.MaxHealth}");
-            Console.WriteLine("");
-            Console.WriteLine($"~~~POSITION~~~");
-            Console.WriteLine($"   ({_position._xPos},{_position._yPos})");
+
+            _hudString = $"{_upperCaseName}'S HUD\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos}\n";
 
             return _hudString;
 
