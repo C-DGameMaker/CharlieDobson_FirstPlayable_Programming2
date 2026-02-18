@@ -19,7 +19,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Shows the HUD of the player
-        public override void ShowHUD()
+        public override string GetHUDString()
         {
             string _upperCaseName = _playerName.ToUpper();
             Console.WriteLine($"{_upperCaseName}'S HUD");
@@ -29,6 +29,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine($"~~~POSITION~~~");
             Console.WriteLine($"   ({_position._xPos},{_position._yPos})");
 
+            return _hudString;
+
+        }
+
+        public override void Movement()
+        {
+            
+
+
+            base.Movement();
         }
 
     }

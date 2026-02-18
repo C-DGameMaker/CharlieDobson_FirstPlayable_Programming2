@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,12 +16,46 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _position = new Position(_startingXPos, _startingYPos);
         }
 
-        public override void ShowHUD()
+        public override string GetHUDString()
         {
             Console.WriteLine($"~~~HEALTH~~~");
             Console.WriteLine($"   {_health.CurrentHealth}/{_health.MaxHealth}");
+
+            return _hudString;
+
         }
 
-        
+        public override void Movement()
+        {
+            _xMovement = 0;
+            _yMovement = 0;
+            Random _random = new Random();
+            int _movement = _random.Next(1, 5);
+
+            if (_movement == 1)
+            {
+                _xMovement++;
+            }
+            else if (_movement == 2)
+            {
+                _xMovement--;
+            }
+            else if (_movement == 3)
+            {
+                _yMovement++;
+            }
+            else if (_movement == 4)
+            {
+                _yMovement--;
+            }
+            else
+            {
+                return;
+            }
+            base.Movement();
+        }
+
     }
+
 }
+

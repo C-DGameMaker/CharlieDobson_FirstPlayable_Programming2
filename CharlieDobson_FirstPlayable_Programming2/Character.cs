@@ -11,6 +11,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //pulling from both of these classes for health and position (DUH)
         public Health _health;
         public Position _position;
+        public int _xMovement = 0;
+        public int _yMovement = 0;
+
+        public string _hudString;
 
         //Constructor constructor
         public Character(int maxHealth, int startingXPos, int startingYPos)
@@ -20,13 +24,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Basic hud before I changed it for Player
-        public virtual void ShowHUD()
+        public virtual string GetHUDString()
         {
             Console.WriteLine($"~~~HEALTH~~~");
             Console.WriteLine($"   {_health.CurrentHealth}/{_health.MaxHealth}");
             Console.WriteLine("");
             Console.WriteLine("~~~POSITION~~~");
             Console.WriteLine($"   ({_position._xPos},{_position._yPos})");
+
+            return _hudString;
 
         }
 
@@ -35,6 +41,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             _position._xPos += newX;
             _position._yPos += newY;
+        }
+
+        public virtual void Movement()
+        {
+            _position._xPos += _xMovement;
+            _position._yPos += _yMovement;
         }
 
 

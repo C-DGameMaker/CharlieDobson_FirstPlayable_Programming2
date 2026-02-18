@@ -29,27 +29,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         //For movement but more so for map stuff
         static Map _gameMap = new Map();
-        static bool[,] _isOccupied;
         static Random _random = new Random();
         static void Main(string[] args)
         {
             //Startin stuff, just loads the map and does stuff. 
             _gameMap.LoadMap();
-
-            _isOccupied = new bool[_gameMap._mapWidth, _gameMap._mapLength];
-            for (int i = 0; i < _gameMap._mapWidth; i++)
-            {
-                for (int j = 0; j < _gameMap._mapLength; j++)
-                {
-                    char _mapTile = _gameMap._inGameMap[i][j];
-
-                    if (_mapTile == '▓')
-                    {
-                        _isOccupied[i, j] = true;
-                    }
-
-                }
-            }
 
             //Game Title/Rules
 
@@ -77,7 +61,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 _randomYPosition = _random.Next(1, _gameMap._mapWidth);
                 _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
-                if (_isOccupied[_randomYPosition, _randomXPosition] == false)
+                if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
                 {
                     break;
                 }
@@ -85,7 +69,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             //Creates player properly, then sets the spot as occupied amd shows your hud
             _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
-            _isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
+            _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
             _gamePlayer.ShowHUD();
             Console.ReadKey(true);
             Console.Clear();
@@ -100,7 +84,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     _randomYPosition = _random.Next(1, _gameMap._mapWidth);
                     _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
-                    if (_isOccupied[_randomYPosition, _randomXPosition] == false)
+                    if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
                     {
                         break;
                     }
@@ -111,7 +95,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                 Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
 
-                _isOccupied[_randomYPosition, _randomXPosition] = true;
+                _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
                 _enemies.Add(_newEnemy);
             }
@@ -142,7 +126,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Takes your input, then turns that into movement
-        static void ProcessInput()
+        public static void ProcessInput()
         {
             if (_currentTurn == 0) return;
             _isPlayerTurn = true;
@@ -161,19 +145,19 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                 if (input == ConsoleKey.W)
                 {
-                    _yMovement--;
+                    _gamePlayer._yMovement--;
                 }
                 if (input == ConsoleKey.S)
                 {
-                    _yMovement++;
+                    _gamePlayer._yMovement++;
                 }
                 if (input == ConsoleKey.A)
                 {
-                    _xMovement--;
+                    _gamePlayer._xMovement--;
                 }
                 if (input == ConsoleKey.D)
                 {
-                    _xMovement++;
+                    _gamePlayer._xMovement++;
                 }
             
            
@@ -194,12 +178,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 if(_gamePlayer._position._yPos + _yMovement > 0 && _gamePlayer._position._yPos + _yMovement < _gameMap._mapWidth)
                 {
-                    if (_isOccupied[_gamePlayer._position._yPos + _yMovement, _gamePlayer._position._xPos + _xMovement] == false)
+                    if (_gameMap._isOccupied[_gamePlayer._position._yPos + _yMovement, _gamePlayer._position._xPos + _xMovement] == false)
                     {
                         //Sets your current position to be off, then changes, then sets it as occupied
-                        _isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = false;
+                        _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = false;
                         _gamePlayer.ChangePosition(newX: _xMovement, newY: _yMovement);
-                        _isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
+                        _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
                     }
 
                     Attack();
@@ -214,8 +198,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 _gamePlayer._health.TakeDamage(1);
             }
 
-            _xMovement = 0;
-            _yMovement = 0;
+            _gamePlayer._xMovement = 0;
+            _gamePlayer._yMovement = 0;
             _isPlayerTurn = false;
             _isEnemyTurn = true;
 
@@ -223,81 +207,38 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 _enemyMovementX = 0;
                _enemyMovementY = 0;
-                int _movement = _random.Next(1,7);
-                
-                if(_movement == 1)
-                {
-                    _enemyMovementX++;
-                }
-                else if (_movement == 2)
-                {
-                    _enemyMovementX--;
-                }
-                else if (_movement == 3)
-                {
-                    _enemyMovementY++;
-                }
-                else if (_movement == 4)
-                {
-                    _enemyMovementY--;
-                }
-                else if (_movement == 5)
-                {
-                    if(_gamePlayer._position._xPos < em._position._xPos)
-                    {
-                        _enemyMovementX--;
-                    }
-                    else
-                    {
-                        _enemyMovementX++;
-                    }
-                }
-                else if (_movement == 6)
-                {
-                    if (_gamePlayer._position._yPos < em._position._yPos)
-                    {
-                        _enemyMovementY--;
-                    }
-                    else
-                    {
-                        _enemyMovementY++;
-                    }
-                }
-                else 
-                {
-                    return;
-                }
+               
 
                 if (em._position._xPos + _enemyMovementX > 0 && em._position._xPos + _enemyMovementX < _gameMap._mapLength)
                 {
                     if (em._position._yPos + _enemyMovementY > 0 && em._position._yPos + _enemyMovementY < _gameMap._mapWidth)
                     {
-                        if (_isOccupied[em._position._yPos + _enemyMovementY, em._position._xPos + _enemyMovementX] == false)
+                        if (_gameMap._isOccupied[em._position._yPos + _enemyMovementY, em._position._xPos + _enemyMovementX] == false)
                         {
                             //Sets enemies current position to be off, then changes, then sets it as occupied
-                            _isOccupied[em._position._yPos, em._position._xPos] = false;
+                            _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
                             em.ChangePosition(newX: _enemyMovementX, newY: _enemyMovementY);
-                            _isOccupied[em._position._yPos, em._position._xPos] = true;
+                            _gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
                         }
 
                         Attack();
 
                         if (em._health.CurrentHealth <= 0)
                         {
-                            _isOccupied[em._position._yPos, em._position._xPos] = false;
+                            _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
                             while (true)
                             {
                                 _randomYPosition = _random.Next(1, _gameMap._mapWidth);
                                 _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
-                                if (_isOccupied[_randomYPosition, _randomXPosition] == false)
+                                if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
                                 {
                                     break;
                                 }
                             }
 
                             em._position = new Position(_randomXPosition, _randomYPosition);
-                            _isOccupied[em._position._yPos, em._position._xPos] = true;
+                            _gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
                             em._health.ResetHealth();
 
 
@@ -313,8 +254,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 {
                     em._health.TakeDamage(1);
                 }
-                _enemyMovementX = 0;
-                 _enemyMovementY = 0;
+                em._xMovement = 0;
+                em._yMovement = 0;
             }
 
 

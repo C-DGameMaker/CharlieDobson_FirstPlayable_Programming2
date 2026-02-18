@@ -11,17 +11,20 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Map
     {
-        private ConsoleColor[] _mapColors = { ConsoleColor.Green, ConsoleColor.DarkGreen, ConsoleColor.Blue, ConsoleColor.Gray };
+        Dictionary<char, ConsoleColor> _writtenMap = new Dictionary<char, ConsoleColor>();
         public string _map = "MapFile.txt";
         public string[] _inGameMap;
 
         public int _mapWidth;
         public int _mapLength;
 
+        public bool[,] _isOccupied;
+
         /*
          * Borders
          * ╔ ╗ ═ ║ ╚ ╝
          */
+
         //MAKE IT SO I CAN READ THE MAP YIPEEEEE
         public void LoadMap()
         {
@@ -29,6 +32,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
              _mapWidth = _inGameMap.Length;
              _mapLength = _inGameMap[0].Length;
+            _isOccupied = new bool[_mapWidth, _mapLength];
+
+            _writtenMap.Add('▒', ConsoleColor.Blue);
+            _writtenMap.Add('░', ConsoleColor.Green);
+            _writtenMap.Add('▓', ConsoleColor.Gray);
+            _writtenMap.Add('█', ConsoleColor.DarkGreen);
         }
 
        
@@ -75,7 +84,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         {
                             Console.BackgroundColor = ConsoleColor.Gray;
                             Console.ForegroundColor = ConsoleColor.Gray;
-                        }
+                            _isOccupied[w, l] = true;
+                    }
                         else if (_mapTile == '█')
                         {
                             Console.BackgroundColor = ConsoleColor.DarkGreen;
