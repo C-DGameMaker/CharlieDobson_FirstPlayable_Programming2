@@ -45,6 +45,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _position._yPos += _yMovement;
         }
 
+        public virtual void DrawCharcter()
+        {
+            Console.SetCursorPosition(_position._xPos, _position._yPos);
+            Console.Write(" ");
+        }
+
 
 
     }

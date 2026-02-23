@@ -30,6 +30,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //For movement but more so for map stuff
         static Map _gameMap = new Map();
         static Random _random = new Random();
+        public static GameManager gameManager;
         static void Main(string[] args)
         {
             //Startin stuff, just loads the map and does stuff. 
@@ -306,24 +307,19 @@ namespace CharlieDobson_FirstPlayable_Programming2
             WriteHUD();
             Console.WriteLine();
 
-
-            Console.SetCursorPosition(_gamePlayer._position._xPos, _gamePlayer._position._yPos);
-            Console.BackgroundColor = ConsoleColor.Magenta;
-            Console.Write("*");
+            _gamePlayer.DrawCharcter();
+            
 
             foreach(Enemy em in _enemies)
             {
-                Console.SetCursorPosition(em._position._xPos, em._position._yPos);
-                Console.BackgroundColor = ConsoleColor.DarkRed;
-                Console.Write("&");
+                em.DrawCharcter();
             }
             Console.ResetColor();
         }
 
         static void WriteHUD()
         {
-            Console.SetCursorPosition(35, 0);
-            Console.Write(_gamePlayer.GetHUDString());
+            
         }
 
       

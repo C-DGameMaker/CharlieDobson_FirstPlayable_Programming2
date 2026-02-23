@@ -28,11 +28,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
             return _hudString;
 
         }
-
+        public override void DrawCharcter()
+        {
+            Console.SetCursorPosition(_position._xPos, _position._yPos);
+            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.Write("*");
+        }
         public override void Movement()
         {
             
-
+            
 
             base.Movement();
         }
