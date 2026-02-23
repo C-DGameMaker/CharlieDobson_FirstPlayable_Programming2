@@ -11,6 +11,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public Map _gameMap = new Map();
 
         static List<Enemy> _enemies = new List<Enemy>();
+        static Player _gamePlayer;
+        public string _writtenName;
 
         static Random _random = new Random();
         static int _randomXPosition;
@@ -20,6 +22,21 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public void Load()
         {
             _gameMap.LoadMap();
+
+            while (true)
+            {
+                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                _randomXPosition = _random.Next(1, _gameMap._mapLength);
+
+                if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
+                {
+                    break;
+                }
+            }
+
+            //Creates player properly, then sets the spot as occupied amd shows your hud
+            _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
+            _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
 
             int enemies = _random.Next(1, 5);
 

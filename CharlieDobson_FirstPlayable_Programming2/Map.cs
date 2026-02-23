@@ -86,6 +86,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         }
 
                         Console.Write(_mapTile);
+                        if(_mapTile == '▓')
+                        {
+                            _isOccupied[w, l] = true;
+                        }
                     }
 
                     Console.ResetColor();
