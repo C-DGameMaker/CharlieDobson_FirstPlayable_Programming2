@@ -30,10 +30,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //For movement but more so for map stuff
         static Map _gameMap = new Map();
         static Random _random = new Random();
-        public static GameManager gameManager;
+        public static GameManager _gameManager;
         static void Main(string[] args)
         {
             //Startin stuff, just loads the map and does stuff. 
+            _gameManager = new GameManager();
+            _gameManager.Load();
             _gameMap.LoadMap();
 
             //Game Title/Rules
@@ -55,54 +57,29 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine();
 
             //Randomizes your starting position
-            
 
-            while (true)
-            {
-                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
-                _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
-                if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
-                {
-                    break;
-                }
-            }
+            //while (true)
+            //{
+            //    _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+            //    _randomXPosition = _random.Next(1, _gameMap._mapLength);
 
-            //Creates player properly, then sets the spot as occupied amd shows your hud
-            _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
-            _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
-            
+            //    if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
+            //    {
+            //        break;
+            //    }
+            //}
+
+            ////Creates player properly, then sets the spot as occupied amd shows your hud
+            //_gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
+            //_gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
+
             Console.ReadKey(true);
             Console.Clear();
 
-            //Make 1-4 enemies
-            int enemies = _random.Next(1, 5);
 
-            for (int i = 0; i < enemies; i++)
-            {
-                while (true)
-                {
-                    _randomYPosition = _random.Next(1, _gameMap._mapWidth);
-                    _randomXPosition = _random.Next(1, _gameMap._mapLength);
-
-                    if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
-                    {
-                        break;
-                    }
-                }
-
-                int _enemyHealth = _random.Next(1, 6);
-                _enemyHealth *= 10;
-
-                Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
-
-                _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
-
-                _enemies.Add(_newEnemy);
-            }
-
-            //Starts loading the game, aka animated map cause I wanted to
-            _gameMap.DrawMapButAnimated();
+            ////Starts loading the game, aka animated map cause I wanted to
+            _gameManager._gameMap.DrawMapButAnimated();
             Console.WriteLine("Press anything to start");
 
             Console.ReadKey(true);
@@ -111,8 +88,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             while (_isDead == false)
             {
                 Draw();
-                ProcessInput();
-                Update();
+                Console.ReadKey(true);
+                //ProcessInput();
+                //Update();
                 
             }
             Console.Clear();

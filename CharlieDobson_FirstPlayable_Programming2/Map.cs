@@ -72,27 +72,20 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     {
                         char _mapTile = _inGameMap[w][l];
 
-                        if (_mapTile == '▒')
+                        if(_writtenMap.ContainsKey(_mapTile))
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
+                            ConsoleColor _mapColor;
+                            _mapColor = _writtenMap[_mapTile];
+                            Console.BackgroundColor = _mapColor;
+                            Console.ForegroundColor = _mapColor;
                         }
-                        else if (_mapTile == '░')
+                        else
                         {
-                            Console.BackgroundColor = ConsoleColor.Green;
-                        }
-                        else if (_mapTile == '▓')
-                        {
-                            Console.BackgroundColor = ConsoleColor.Gray;
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                            _isOccupied[w, l] = true;
-                    }
-                        else if (_mapTile == '█')
-                        {
-                            Console.BackgroundColor = ConsoleColor.DarkGreen;
-                            Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.Write("..What?! How?! HOW?! ANSWER ME YOU HEATHEN!");
+                            Environment.Exit(0);
                         }
 
-                           Console.Write(_mapTile);
+                        Console.Write(_mapTile);
                     }
 
                     Console.ResetColor();
@@ -154,25 +147,20 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     {
                         char _mapTile = _inGameMap[w][l];
 
-                        if (_mapTile == '▒')
+                        if (_writtenMap.ContainsKey(_mapTile))
                         {
-                            Console.BackgroundColor = ConsoleColor.Blue;
+                            ConsoleColor _mapColor;
+                            _mapColor = _writtenMap[_mapTile];
+                            Console.BackgroundColor = _mapColor;
+                            Console.ForegroundColor = _mapColor;
                         }
-                        else if (_mapTile == '░')
+                        else
                         {
-                            Console.BackgroundColor = ConsoleColor.Green;
+                            Console.Write("..What?! How?! HOW?! ANSWER ME YOU HEATHEN!");
+                            Environment.Exit(0);
                         }
-                        else if (_mapTile == '▓')
-                        {
-                            Console.BackgroundColor = ConsoleColor.Gray;
-                            Console.ForegroundColor = ConsoleColor.Gray;
-                        }
-                        else if (_mapTile == '█')
-                        {
-                            Console.BackgroundColor = ConsoleColor.DarkGreen;
-                            Console.ForegroundColor = ConsoleColor.DarkGreen;
-                        }
-                            Console.Write(_mapTile);
+
+                        Console.Write(_mapTile);
                     }
                     Console.ResetColor();
                     Console.Write("║");
