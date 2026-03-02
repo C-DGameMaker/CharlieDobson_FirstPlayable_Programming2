@@ -57,7 +57,25 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 return;
             }
-            base.Movement();
+
+            int currentX = _position._xPos + _xMovement;
+            int currentY = _position._yPos + _yMovement;
+
+            if (currentX > 0 && currentY > 0)
+            {
+                if (currentX < GameManager.Instance._gameMap._mapLength && currentY < GameManager.Instance._gameMap._mapWidth)
+                {
+                    if (GameManager.Instance._gameMap._isOccupied[currentX, currentY] == false)
+                    {
+                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = false;
+                        ChangePosition(newX: _xMovement, newY: _yMovement);
+                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = true;
+                    }
+                }
+            }
+
+            _xMovement = 0;
+            _yMovement = 0;
         }
 
     }

@@ -28,10 +28,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         //For movement but more so for map stuff
         static Random _random = new Random();
-        public static GameManager _gameManager;
         static void Main(string[] args)
         {
-            _gameManager = new GameManager();
+            
             //Game Title/Rules
             Console.WriteLine("Charlie's super awesome and not boring game");
             Console.WriteLine();
@@ -45,25 +44,18 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             //Lets you make a name for the player
             Console.WriteLine("Insert a name");
-            _gameManager._writtenName = Console.ReadLine();
+            GameManager.Instance._writtenName = Console.ReadLine();
 
             //Startin stuff, just loads the map and does stuff. 
-            
-            _gameManager.Load();
 
-            Console.WriteLine();
-
-            //Randomizes your starting position
-
-
-            
+            GameManager.Instance.Load();
 
             Console.ReadKey(true);
             Console.Clear();
 
 
             ////Starts loading the game, aka animated map cause I wanted to
-            _gameManager._gameMap.DrawMapButAnimated();
+            GameManager.Instance._gameMap.DrawMapButAnimated();
             Console.WriteLine("Press anything to start");
 
             Console.ReadKey(true);
@@ -265,7 +257,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         static void Draw()
         {
             Console.SetCursorPosition(0, 0);
-            _gameManager._gameMap.DrawMap();
+            GameManager.Instance._gameMap.DrawMap();
             //WriteHUD();
             //Console.WriteLine();
 

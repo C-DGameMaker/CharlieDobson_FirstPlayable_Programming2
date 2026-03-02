@@ -10,13 +10,32 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         public Map _gameMap = new Map();
 
-        static List<Enemy> _enemies = new List<Enemy>();
-        static Player _gamePlayer;
+        public List<Enemy> _enemies = new List<Enemy>();
+        public Player _gamePlayer;
         public string _writtenName;
 
         static Random _random = new Random();
         static int _randomXPosition;
         static int _randomYPosition;
+
+        //So You cannot create another game manager
+        private GameManager() { }
+
+        private static GameManager _instance;
+
+        public static GameManager Instance
+        {
+            get
+            {
+                if(_instance == null)
+                {
+                    _instance = new GameManager();
+                }
+
+                return _instance;
+            }
+        }
+
 
         //Will load everything nesscessary
         public void Load()
