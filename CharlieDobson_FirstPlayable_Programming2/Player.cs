@@ -10,12 +10,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         //You can name your player so I added this
         public string _playerName;
+        public int _goldAmount;
 
         public Player(string name, int maxHealth, int startingXPos, int startingYPos) : base(maxHealth, startingXPos, startingYPos)
         {
             _playerName = name;
             _health = new Health(maxHealth);
             _position = new Position(startingXPos, startingYPos);
+            _goldAmount = 0;
         }
 
         //Shows the HUD of the player
@@ -23,7 +25,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             string _upperCaseName = _playerName.ToUpper();
 
-            _hudString = $"{_upperCaseName}'S HUD\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos}\n";
+            _hudString = $"{_upperCaseName}'S HUD\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos}\n\n~~~GOLD~~~\n    ({_goldAmount}";
 
             return _hudString;
 

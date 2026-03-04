@@ -65,9 +65,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 Draw();
                 Console.ReadKey(true);
-                //ProcessInput();
-                //Update();
-                
+                ProcessInput();
+                Update();
+
             }
             Console.Clear();
             Console.SetCursorPosition(0, 0);
@@ -82,192 +82,63 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Takes your input, then turns that into movement
         public static void ProcessInput()
         {
-            //if (_currentTurn == 0) return;
-            //_isPlayerTurn = true;
+            if (_currentTurn == 0) return;
+            _isPlayerTurn = true;
 
-            //ConsoleKey input = ConsoleKey.NoName;
+            ConsoleKey input = ConsoleKey.NoName;
 
-            //while (input == ConsoleKey.NoName)
-            //{
-            //    input = Console.ReadKey(true).Key;
+            while (input == ConsoleKey.NoName)
+            {
+                input = Console.ReadKey(true).Key;
 
-            //    if (input != ConsoleKey.W && input != ConsoleKey.S && input != ConsoleKey.A && input != ConsoleKey.D)
-            //    {
-            //        input = ConsoleKey.NoName;
-            //    }
-            //}
+                if (input != ConsoleKey.W && input != ConsoleKey.S && input != ConsoleKey.A && input != ConsoleKey.D)
+                {
+                    input = ConsoleKey.NoName;
+                }
+            }
 
-            //    if (input == ConsoleKey.W)
-            //    {
-            //        _gamePlayer._yMovement--;
-            //    }
-            //    if (input == ConsoleKey.S)
-            //    {
-            //        _gamePlayer._yMovement++;
-            //    }
-            //    if (input == ConsoleKey.A)
-            //    {
-            //        _gamePlayer._xMovement--;
-            //    }
-            //    if (input == ConsoleKey.D)
-            //    {
-            //        _gamePlayer._xMovement++;
-            //    }
-            
-           
+            if (input == ConsoleKey.W)
+            {
+                GameManager.Instance._gamePlayer._yMovement--;
+            }
+            if (input == ConsoleKey.S)
+            {
+                GameManager.Instance._gamePlayer._yMovement++;
+            }
+            if (input == ConsoleKey.A)
+            {
+                GameManager.Instance._gamePlayer._xMovement--;
+            }
+            if (input == ConsoleKey.D)
+            {
+                GameManager.Instance._gamePlayer._xMovement++;
+            }
 
-            
+
+
+
 
         }
 
-        //Does all the checking
-        //static void Update()
-        //{
-        //    if(_gamePlayer._health.CurrentHealth <= 0)
-        //    {
-        //        _isDead = true;
-        //    }
-
-        //    if (_gamePlayer._position._xPos + _xMovement > 0 && _gamePlayer._position._xPos + _xMovement < _gameMap._mapLength)
-        //    {
-        //        if(_gamePlayer._position._yPos + _yMovement > 0 && _gamePlayer._position._yPos + _yMovement < _gameMap._mapWidth)
-        //        {
-        //            if (_gameMap._isOccupied[_gamePlayer._position._yPos + _yMovement, _gamePlayer._position._xPos + _xMovement] == false)
-        //            {
-        //                //Sets your current position to be off, then changes, then sets it as occupied
-        //                _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = false;
-        //                _gamePlayer.ChangePosition(newX: _xMovement, newY: _yMovement);
-        //                _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
-        //            }
-
-        //            Attack();
-                    
-        //        }
-        //    }
-
-        //    char _mapTile = _gameMap._inGameMap[_gamePlayer._position._yPos][_gamePlayer._position._xPos];
-
-        //    if (_mapTile == '▒')
-        //    {
-        //        _gamePlayer._health.TakeDamage(1);
-        //    }
-
-        //    _gamePlayer._xMovement = 0;
-        //    _gamePlayer._yMovement = 0;
-        //    _isPlayerTurn = false;
-        //    _isEnemyTurn = true;
-
-        //    foreach (Enemy em in _enemies)
-        //    {
-        //        _enemyMovementX = 0;
-        //       _enemyMovementY = 0;
-               
-
-        //        if (em._position._xPos + _enemyMovementX > 0 && em._position._xPos + _enemyMovementX < _gameMap._mapLength)
-        //        {
-        //            if (em._position._yPos + _enemyMovementY > 0 && em._position._yPos + _enemyMovementY < _gameMap._mapWidth)
-        //            {
-        //                if (_gameMap._isOccupied[em._position._yPos + _enemyMovementY, em._position._xPos + _enemyMovementX] == false)
-        //                {
-        //                    //Sets enemies current position to be off, then changes, then sets it as occupied
-        //                    _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
-        //                    em.ChangePosition(newX: _enemyMovementX, newY: _enemyMovementY);
-        //                    _gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
-        //                }
-
-        //                Attack();
-
-        //                if (em._health.CurrentHealth <= 0)
-        //                {
-        //                    _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
-        //                    while (true)
-        //                    {
-        //                        _randomYPosition = _random.Next(1, _gameMap._mapWidth);
-        //                        _randomXPosition = _random.Next(1, _gameMap._mapLength);
-
-        //                        if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
-        //                        {
-        //                            break;
-        //                        }
-        //                    }
-
-        //                    em._position = new Position(_randomXPosition, _randomYPosition);
-        //                    _gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
-        //                    em._health.ResetHealth();
-
-
-        //                }
-
-
-        //            }
-        //        }
-
-        //        _mapTile = _gameMap._inGameMap[em._position._yPos][em._position._xPos];
-
-        //        if (_mapTile == '▒')
-        //        {
-        //            em._health.TakeDamage(1);
-        //        }
-        //        em._xMovement = 0;
-        //        em._yMovement = 0;
-        //    }
-
-
-        //    _isEnemyTurn = false;
-        //    _currentTurn++;
-
-
-        //}
-
-        static void Attack()
+        static void Update()
         {
-            //if (_isEnemyTurn == false && _isPlayerTurn == false) return;
-            //if(_isPlayerTurn == true)
-            //{
-            //    foreach (Enemy em in _enemies)
-            //    {
-            //        if (_gamePlayer._position._xPos + _xMovement == em._position._xPos)
-            //        {
-            //            if (_gamePlayer._position._yPos + _yMovement == em._position._yPos)
-            //            {
-            //                int damage = _random.Next(1, 16);
-            //                em._health.TakeDamage(damage);
-            //            }
-            //        }
-            //    }
-            //}
-
-            //if(_isEnemyTurn == true)
-            //{
-            //    foreach (Enemy em in _enemies)
-            //    {
-            //        if (em._position._xPos + _enemyMovementX == _gamePlayer._position._xPos)
-            //        {
-            //            if (em._position._yPos + _enemyMovementY == _gamePlayer._position._yPos)
-            //            {
-            //                int damage = _random.Next(1, 11);
-            //                _gamePlayer._health.TakeDamage(damage);
-            //            }
-            //        }
-            //    }
-            //}
+            GameManager.Instance._gamePlayer.Movement();
         }
+
+        
+
+
+        
 
         //Draws the game
         static void Draw()
         {
             Console.SetCursorPosition(0, 0);
             GameManager.Instance._gameMap.DrawMap();
-            //WriteHUD();
-            //Console.WriteLine();
-
-            //_gamePlayer.DrawCharcter();
+            Console.WriteLine();
+            Console.WriteLine(GameManager.Instance._gamePlayer.GetHUDString());
+            GameManager.Instance._gamePlayer.DrawCharcter();
             
-
-            //foreach(Enemy em in _enemies)
-            //{
-            //    em.DrawCharcter();
-            //}
             Console.ResetColor();
         }
 
