@@ -139,7 +139,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.SetCursorPosition(0, 0);
             GameManager.Instance._gameMap.DrawMap();
             Console.WriteLine();
-            Console.WriteLine(GameManager.Instance._gamePlayer.GetHUDString());
             GameManager.Instance._gamePlayer.DrawCharcter();
             
             Console.ResetColor();

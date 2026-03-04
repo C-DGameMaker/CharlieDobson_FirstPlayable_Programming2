@@ -36,6 +36,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.Write("*");
         }
+
+        public void Attack()
+        {
+
+        }
         public override void Movement()
         {
             int currentX = _position._xPos + _xMovement;

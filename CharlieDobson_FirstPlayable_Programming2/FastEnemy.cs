@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
-    internal class Enemy : Character
+    internal class FastEnemy : Enemy
     {
-        //Makes Enemy
-        public Enemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
+        int _speed = 2;
+        public FastEnemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
         {
             _health = new Health(_maxHealth);
             _position = new Position(_startingXPos, _startingYPos);
@@ -28,12 +27,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             Console.SetCursorPosition(_position._xPos, _position._yPos);
             Console.BackgroundColor = ConsoleColor.DarkRed;
-            Console.Write("&");
+            Console.Write("0");
         }
 
-        public virtual void Attack()
+        public override void Attack()
         {
             int _attackPower = GameManager.Instance._random.Next(1, 21);
+            _attackPower /= 2;
 
             GameManager.Instance._gamePlayer._health.TakeDamage(_attackPower);
         }
@@ -65,8 +65,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 return;
             }
 
-            int currentX = _position._xPos + _xMovement;
-            int currentY = _position._yPos + _yMovement;
+            int currentX = _position._xPos + (_xMovement * _speed);
+            int currentY = _position._yPos + (_yMovement * _speed);
 
             if (currentX > 0 && currentY > 0)
             {
@@ -84,8 +84,5 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _xMovement = 0;
             _yMovement = 0;
         }
-
     }
-
 }
-

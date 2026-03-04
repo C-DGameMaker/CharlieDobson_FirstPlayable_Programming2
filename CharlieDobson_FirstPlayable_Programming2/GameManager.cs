@@ -15,7 +15,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public Player _gamePlayer;
         public string _writtenName;
 
-        static Random _random = new Random();
+        public Random _random = new Random();
         static int _randomXPosition;
         static int _randomYPosition;
 
@@ -58,6 +58,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
             _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
 
+            EnemySpawning();
+
+        }
+
+        private void EnemySpawning()
+        {
             int enemies = _random.Next(1, 5);
 
             for (int i = 0; i < enemies; i++)
@@ -76,13 +82,37 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 int _enemyHealth = _random.Next(1, 6);
                 _enemyHealth *= 10;
 
-                Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
+                int _typeOfEnemy = _random.Next(1, 4);
 
-                _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
+                if (_typeOfEnemy == 1) 
+                {
+                    Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
-                _enemies.Add(_newEnemy);
+                    _enemies.Add(_newEnemy);
+                }
+                else if(_typeOfEnemy == 2)
+                {
+                    Enemy _newEnemy = new FastEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
+
+                    _enemies.Add(_newEnemy);
+                }
+                else if(_typeOfEnemy == 3)
+                {
+
+                }
+                else
+                {
+
+                    Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
+
+                    _enemies.Add(_newEnemy);
+                }
+
+                
             }
-
         }
 
         public void EnemyMovement()
@@ -90,6 +120,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
             foreach(Enemy em in _enemies)
             {
                 em.Movement();
+            }
+        }
+
+        public void HudStrings()
+        {
+            Console.WriteLine(_gamePlayer.GetHUDString());
+            foreach(Enemy em in _enemies)
+            {
+                Console.WriteLine(em.GetHUDString());
             }
         }
 
