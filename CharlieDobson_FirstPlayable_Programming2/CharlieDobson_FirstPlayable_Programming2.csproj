@@ -48,8 +48,11 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="FastEnemy.cs" />
     <Compile Include="GameManager.cs" />
+    <Compile Include="GoldPickup.cs" />
     <Compile Include="Health.cs" />
+    <Compile Include="HealthPickup.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="MaxHealPickUp.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />

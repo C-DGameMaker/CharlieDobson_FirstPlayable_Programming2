@@ -13,7 +13,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
         
         static void Main(string[] args)
         {
-            
             //Game Title/Rules
             Console.WriteLine("Charlie's super awesome and not boring game");
             Console.WriteLine();
@@ -22,6 +21,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine("Water has piranahs that will bite you each turn you're in there");
 
             Console.WriteLine("Kill enemies, but watch out they can kill you");
+            Console.WriteLine("Enemies drop ");
             Console.WriteLine();
 
 
@@ -46,10 +46,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             while (GameManager.Instance._isDead == false)
             {
-                Draw();
-                Console.ReadKey(true);
                 ProcessInput();
                 Update();
+                Draw();
 
             }
             Console.Clear();
@@ -102,20 +101,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         }
 
+        //Updates various things based off of stuff actions
         static void Update()
         {
             GameManager.Instance._gamePlayer.Movement();
             GameManager.Instance.EnemyMovement();
-
             GameManager.Instance.CheckTile();
             GameManager.Instance.DeathCheck();
             GameManager.Instance._currentTurn++;
         }
-
-        
-
-
-        
 
         //Draws the game
         static void Draw()
@@ -124,17 +118,25 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.SetCursorPosition(0, 0);
             GameManager.Instance._gameMap.DrawMap();
             Console.WriteLine();
-            Console.WriteLine($"Current Turn: {_currentTurn}");
+            Console.WriteLine($"Current Turn: {GameManager.Instance._currentTurn}");
             Console.WriteLine();
             GameManager.Instance.HudStrings();
+
             GameManager.Instance._gamePlayer.DrawCharcter();
             foreach(Enemy em in GameManager.Instance._enemies)
             {
                 em.DrawCharcter();
             }
+            foreach(Collectables cl in GameManager.Instance._collectables)
+            {
+                cl.DrawCollectable();
+            }
             
             Console.ResetColor();
+            Thread.Sleep(100);
         }
+
+        
 
       
     }

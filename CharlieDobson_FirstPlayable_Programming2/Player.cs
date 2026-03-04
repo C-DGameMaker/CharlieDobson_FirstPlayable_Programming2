@@ -25,7 +25,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             string _upperCaseName = _playerName.ToUpper();
 
-            _hudString = $"{_upperCaseName}'S HUD\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos}\n\n~~~GOLD~~~\n    {_goldAmount}";
+            _hudString = $"{_upperCaseName}'S HUD\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos})\n\n~~~GOLD~~~\n    {_goldAmount}";
 
             return _hudString;
 
@@ -33,7 +33,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public override void DrawCharcter()
         {
             Console.SetCursorPosition(_position._xPos, _position._yPos);
-            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.Write("*");
         }
 
@@ -57,11 +58,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 if(currentX < GameManager.Instance._gameMap._mapLength && currentY < GameManager.Instance._gameMap._mapWidth)
                 {
-                    if (GameManager.Instance._gameMap._isOccupied[currentX, currentY] == false)
+                    if (GameManager.Instance._gameMap._isOccupied[currentY, currentX] == false)
                     {
-                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = false;
+                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = false;
                         ChangePosition(newX: _xMovement, newY: _yMovement);
-                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = true;
+                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = true;
                     }
 
                     foreach(Enemy em in GameManager.Instance._enemies)
@@ -69,6 +70,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         if(currentX == em._position._xPos && currentY == em._position._yPos)
                         {
                             Attack(em);
+                        }
+                    }
+
+                    foreach(Collectables cl in GameManager.Instance._collectables)
+                    {
+                        if (currentX == cl._position._xPos && currentY == cl._position._yPos)
+                        {
+                            cl.PickUP();
                         }
                     }
 

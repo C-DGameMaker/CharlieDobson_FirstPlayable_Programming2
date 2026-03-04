@@ -44,7 +44,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Will load the map immedietly
         public void DrawMap()
         {
+            int startY = Console.CursorTop;
 
+            // Top border
+            Console.SetCursorPosition(0, startY);
             for (int _border = 0; _border < _mapLength + 2; _border++)
             {
                 if (_border == 0)
@@ -61,12 +64,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     Console.Write("═");
                 }
             }
-            Console.Write("\n");
+
+
 
             for(int w = 0; w < _mapWidth; w++)
             {
-                
-                    Console.Write("║");
+                Console.SetCursorPosition(0, startY + 1 + w);
+                Console.Write("║");
 
                     for (int l = 0; l < _mapLength; l++)
                     {
@@ -85,20 +89,22 @@ namespace CharlieDobson_FirstPlayable_Programming2
                             Environment.Exit(0);
                         }
 
-                        Console.Write(_mapTile);
-                        if(_mapTile == '▓')
-                        {
-                            _isOccupied[w, l] = true;
-                        }
+                    if (_mapTile == '▓')
+                    {
+                        _isOccupied[w, l] = true;
+                    }
+
+                    Console.Write(_mapTile);
+                        
                     }
 
                     Console.ResetColor();
                     Console.Write("║");
-                    Console.Write("\n");
                 
 
             }
 
+            Console.SetCursorPosition(0, startY + _mapWidth + 1);
             for (int _border = 0; _border < _mapLength  + 2; _border++)
             {
                 if (_border == 0)
@@ -115,7 +121,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     Console.Write("═");
                 }
             }
-            Console.Write("\n");
         }
 
         //Will load the map but makes it animated (Used for intro)

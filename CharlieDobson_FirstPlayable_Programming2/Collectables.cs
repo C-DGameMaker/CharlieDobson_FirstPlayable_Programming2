@@ -14,5 +14,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             _position = new Position(startingXPos, startingYPos);
         }
+
+        public virtual void DrawCollectable()
+        {
+
+        }
+
+        public virtual void PickUP()
+        {
+
+        }
+
     }
 }

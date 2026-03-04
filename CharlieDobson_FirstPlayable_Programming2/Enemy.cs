@@ -33,7 +33,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public virtual void Attack()
         {
-            
             int _attackPower = GameManager.Instance._random.Next(1, 21);
 
             GameManager.Instance._gamePlayer._health.TakeDamage(_attackPower);

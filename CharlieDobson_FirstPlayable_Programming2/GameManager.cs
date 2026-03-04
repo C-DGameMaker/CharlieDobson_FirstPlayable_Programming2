@@ -13,13 +13,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public int _currentTurn = 0;
         public List<Enemy> _enemies = new List<Enemy>();
+        public List<Collectables> _collectables = new List<Collectables>();
         public Player _gamePlayer;
         public bool _isDead = false;
         public string _writtenName;
 
         public Random _random = new Random();
-        static int _randomXPosition;
-        static int _randomYPosition;
+        public int _randomXPosition;
+        public int _randomYPosition;
 
         //So You cannot create another game manager
         private GameManager() { }
@@ -61,12 +62,59 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
 
             EnemySpawning();
+            CollectablesSpawning();
 
+        }
+
+        private void CollectablesSpawning()
+        {
+            int collectables = _random.Next(1, 11);
+
+            for(int i = 0; i < collectables; i++)
+            {
+                while (true)
+                {
+                    _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                    _randomXPosition = _random.Next(1, _gameMap._mapLength);
+
+                    if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
+                    {
+                        break;
+                    }
+                }
+
+                int typeOfCollectable = _random.Next(1, 4);
+
+                if (typeOfCollectable == 1)
+                {
+                    int heal = _random.Next(1, 10);
+                    Collectables newCollectable = new HealthPickup(heal, _randomXPosition, _randomYPosition);
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
+                    _collectables.Add(newCollectable);
+                }
+                else if(typeOfCollectable == 2)
+                {
+                    int gold = _random.Next(1, 5);
+                    Collectables newCollectable = new GoldPickup(gold, _randomXPosition, _randomYPosition);
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
+                    _collectables.Add(newCollectable);
+                }
+                else if (typeOfCollectable == 3)
+                {
+                    Collectables newCollectable = new MaxHealPickUp(_randomXPosition, _randomYPosition);
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
+                    _collectables.Add(newCollectable);
+                }
+                else if (typeOfCollectable == 4)
+                {
+                    return;
+                }
+            }
         }
 
         private void EnemySpawning()
         {
-            int enemies = _random.Next(1, 5);
+            int enemies = _random.Next(1, 7);
 
             for (int i = 0; i < enemies; i++)
             {
@@ -166,16 +214,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     }
                         _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
                         em.ChangePosition(newX: _randomXPosition, newY: _randomYPosition);
-                        ._gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
+                        _gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
                     }
 
 
                 }
             }
-        }
+        
         public void CheckTile()
         {
-            char _mapTile = _gameMap._inGameMap[_gamePlayer._position._xPos][_gamePlayer._position._yPos];
+            char _mapTile = _gameMap._inGameMap[_gamePlayer._position._yPos][_gamePlayer._position._xPos];
 
             if (_mapTile == '▒')
             {
