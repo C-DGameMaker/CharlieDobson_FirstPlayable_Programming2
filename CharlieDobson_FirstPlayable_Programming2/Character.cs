@@ -51,6 +51,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.Write(" ");
         }
 
+        public virtual void Attack()
+        {
+            
+        }
+
 
 
     }

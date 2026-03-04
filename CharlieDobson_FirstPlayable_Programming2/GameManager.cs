@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -82,6 +83,34 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 _enemies.Add(_newEnemy);
             }
 
+        }
+
+        public void EnemyMovement()
+        {
+            foreach(Enemy em in _enemies)
+            {
+                em.Movement();
+            }
+        }
+
+        public void CheckTile()
+        {
+            char _mapTile = _gameMap._inGameMap[_gamePlayer._position._xPos][_gamePlayer._position._yPos];
+
+            if (_mapTile == '▒')
+            {
+                _gamePlayer._health.TakeDamage(1);
+            }
+
+            foreach(Enemy em in _enemies)
+            {
+                _mapTile = _gameMap._inGameMap[em._position._yPos][em._position._xPos];
+
+                if (_mapTile == '▒')
+                {
+                    em._health.TakeDamage(1);
+                }
+            }
         }
     }
 }

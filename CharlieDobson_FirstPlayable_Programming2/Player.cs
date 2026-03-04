@@ -25,7 +25,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             string _upperCaseName = _playerName.ToUpper();
 
-            _hudString = $"{_upperCaseName}'S HUD\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos}\n\n~~~GOLD~~~\n    ({_goldAmount}";
+            _hudString = $"{_upperCaseName}'S HUD\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n\n~~~POSITION~~~\n   ({_position._xPos},{_position._yPos}\n\n~~~GOLD~~~\n    {_goldAmount}";
 
             return _hudString;
 
@@ -51,6 +51,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         ChangePosition(newX: _xMovement, newY: _yMovement);
                         GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = true;
                     }
+
                 }
             }
 

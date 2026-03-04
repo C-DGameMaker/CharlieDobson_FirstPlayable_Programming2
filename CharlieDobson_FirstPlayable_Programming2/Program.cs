@@ -123,6 +123,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
         static void Update()
         {
             GameManager.Instance._gamePlayer.Movement();
+            GameManager.Instance.EnemyMovement();
+
+            GameManager.Instance.CheckTile();
         }
 
         
