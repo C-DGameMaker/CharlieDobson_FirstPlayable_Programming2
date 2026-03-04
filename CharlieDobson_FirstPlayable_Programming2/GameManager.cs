@@ -11,8 +11,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         public Map _gameMap = new Map();
 
+        public int _currentTurn = 0;
         public List<Enemy> _enemies = new List<Enemy>();
         public Player _gamePlayer;
+        public bool _isDead = false;
         public string _writtenName;
 
         public Random _random = new Random();
@@ -100,7 +102,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 }
                 else if(_typeOfEnemy == 3)
                 {
+                    Enemy _newEnemy = new SleepEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
+                    _enemies.Add(_newEnemy);
                 }
                 else
                 {
@@ -111,7 +116,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     _enemies.Add(_newEnemy);
                 }
 
-                
             }
         }
 
@@ -126,12 +130,49 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public void HudStrings()
         {
             Console.WriteLine(_gamePlayer.GetHUDString());
+            Console.WriteLine();
             foreach(Enemy em in _enemies)
             {
                 Console.WriteLine(em.GetHUDString());
+                Console.WriteLine();
             }
         }
 
+        public void DeathCheck()
+        {
+            if(_gamePlayer._health.CurrentHealth == 0)
+            {
+                _isDead = true;
+            }
+
+            foreach(Enemy em in _enemies)
+            {
+                if(em._health.CurrentHealth == 0)
+                {
+                    int _goldAmount = _random.Next(1, 11);
+                    GameManager.Instance._gamePlayer.GetGold(_goldAmount);
+
+                    em._health.ResetHealth();
+
+                    while (true)
+                    {
+                        _randomYPosition = _random.Next(1, _gameMap._mapWidth);
+                        _randomXPosition = _random.Next(1, _gameMap._mapLength);
+
+                        if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
+                        {
+                            break;
+                        }
+                    }
+                        _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
+                        em.ChangePosition(newX: _randomXPosition, newY: _randomYPosition);
+                        ._gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
+                    }
+
+
+                }
+            }
+        }
         public void CheckTile()
         {
             char _mapTile = _gameMap._inGameMap[_gamePlayer._position._xPos][_gamePlayer._position._yPos];

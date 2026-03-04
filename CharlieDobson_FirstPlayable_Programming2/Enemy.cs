@@ -18,7 +18,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public override string GetHUDString()
         {
-            _hudString = $"~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n";
+            _hudString = $"~~~ENEMY~~~\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n";
 
             return _hudString;
 
@@ -33,6 +33,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public virtual void Attack()
         {
+            
             int _attackPower = GameManager.Instance._random.Next(1, 21);
 
             GameManager.Instance._gamePlayer._health.TakeDamage(_attackPower);
@@ -72,11 +73,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 if (currentX < GameManager.Instance._gameMap._mapLength && currentY < GameManager.Instance._gameMap._mapWidth)
                 {
-                    if (GameManager.Instance._gameMap._isOccupied[currentX, currentY] == false)
+                    if (GameManager.Instance._gameMap._isOccupied[currentY, currentX] == false)
                     {
-                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = false;
+                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = false;
                         ChangePosition(newX: _xMovement, newY: _yMovement);
-                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = true;
+                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = true;
+                    }
+                    if (currentX == GameManager.Instance._gamePlayer._position._xPos && currentY == GameManager.Instance._gamePlayer._position._yPos)
+                    {
+                        Attack();
                     }
                 }
             }

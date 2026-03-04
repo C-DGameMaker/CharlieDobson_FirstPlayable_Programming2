@@ -10,24 +10,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Program
     {
-        //Still with so many classes I end up with SO MANY VARIABLES HOW DO I DO IT
         
-        static bool _isDead = false;
-        static int _currentTurn = 0;
-        static bool _isPlayerTurn;
-        static bool _isEnemyTurn;
-
-        //For Movement
-        static int _xMovement = 0;
-        static int _yMovement = 0;
-        static int _enemyMovementX;
-        static int _enemyMovementY;
-
-        static int _randomXPosition;
-        static int _randomYPosition;
-
-        //For movement but more so for map stuff
-        static Random _random = new Random();
         static void Main(string[] args)
         {
             
@@ -61,7 +44,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.ReadKey(true);
             Console.Clear();
 
-            while (_isDead == false)
+            while (GameManager.Instance._isDead == false)
             {
                 Draw();
                 Console.ReadKey(true);
@@ -82,8 +65,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Takes your input, then turns that into movement
         public static void ProcessInput()
         {
-            if (_currentTurn == 0) return;
-            _isPlayerTurn = true;
+            if (GameManager.Instance._currentTurn == 0) return;
 
             ConsoleKey input = ConsoleKey.NoName;
 
@@ -126,6 +108,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
             GameManager.Instance.EnemyMovement();
 
             GameManager.Instance.CheckTile();
+            GameManager.Instance.DeathCheck();
+            GameManager.Instance._currentTurn++;
         }
 
         
@@ -136,17 +120,20 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Draws the game
         static void Draw()
         {
+            Console.Clear();
             Console.SetCursorPosition(0, 0);
             GameManager.Instance._gameMap.DrawMap();
             Console.WriteLine();
+            Console.WriteLine($"Current Turn: {_currentTurn}");
+            Console.WriteLine();
+            GameManager.Instance.HudStrings();
             GameManager.Instance._gamePlayer.DrawCharcter();
+            foreach(Enemy em in GameManager.Instance._enemies)
+            {
+                em.DrawCharcter();
+            }
             
             Console.ResetColor();
-        }
-
-        static void WriteHUD()
-        {
-            
         }
 
       

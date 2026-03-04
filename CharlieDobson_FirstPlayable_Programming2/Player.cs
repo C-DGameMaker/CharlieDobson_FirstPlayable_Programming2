@@ -37,9 +37,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.Write("*");
         }
 
-        public void Attack()
+        public void Attack(Enemy em)
         {
+            int _attackPower = GameManager.Instance._random.Next(1, 20);
 
+            em._health.TakeDamage(_attackPower);
+                
+        }
+        public void GetGold(int amount)
+        {
+            _goldAmount += amount;
         }
         public override void Movement()
         {
@@ -55,6 +62,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = false;
                         ChangePosition(newX: _xMovement, newY: _yMovement);
                         GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = true;
+                    }
+
+                    foreach(Enemy em in GameManager.Instance._enemies)
+                    {
+                        if(currentX == em._position._xPos && currentY == em._position._yPos)
+                        {
+                            Attack(em);
+                        }
                     }
 
                 }

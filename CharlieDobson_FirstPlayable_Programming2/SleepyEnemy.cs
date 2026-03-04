@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
-    internal class FastEnemy : Enemy
+    internal class SleepEnemy : Enemy
     {
-        int _speed = 2;
-        public FastEnemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
+        public SleepEnemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
         {
             _health = new Health(_maxHealth);
             _position = new Position(_startingXPos, _startingYPos);
         }
-
         public override string GetHUDString()
         {
-            _hudString = $"~~~FASTENEMY~~~\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n";
+            _hudString = $"~~~SLEEPYENEMY~~~\n~~~HEALTH~~~\n   {_health.CurrentHealth}/{_health.MaxHealth}\n";
 
             return _hudString;
 
@@ -26,14 +24,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public override void DrawCharcter()
         {
             Console.SetCursorPosition(_position._xPos, _position._yPos);
-            Console.BackgroundColor = ConsoleColor.DarkRed;
-            Console.Write("0");
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.Write("Z");
         }
 
         public override void Attack()
         {
             int _attackPower = GameManager.Instance._random.Next(1, 21);
-            _attackPower /= 2;
+            _attackPower /= 3;
 
             GameManager.Instance._gamePlayer._health.TakeDamage(_attackPower);
         }
@@ -42,7 +40,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _xMovement = 0;
             _yMovement = 0;
             Random _random = new Random();
-            int _movement = _random.Next(1, 5);
+            int _movement = _random.Next(1, 9);
 
             if (_movement == 1)
             {
@@ -62,11 +60,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
             else
             {
-                return;
+                Sleepy();
             }
 
-            int currentX = _position._xPos + (_xMovement * _speed);
-            int currentY = _position._yPos + (_yMovement * _speed);
+            int currentX = _position._xPos + _xMovement;
+            int currentY = _position._yPos + _yMovement;
 
             if (currentX > 0 && currentY > 0)
             {
@@ -78,7 +76,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         ChangePosition(newX: _xMovement, newY: _yMovement);
                         GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = true;
                     }
-                    if(currentX == GameManager.Instance._gamePlayer._position._xPos && currentY == GameManager.Instance._gamePlayer._position._yPos)
+                    if (currentX == GameManager.Instance._gamePlayer._position._xPos && currentY == GameManager.Instance._gamePlayer._position._yPos)
                     {
                         Attack();
                     }
@@ -87,6 +85,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             _xMovement = 0;
             _yMovement = 0;
+        }
+
+        public void Sleepy()
+        {
+            int _healAmount = GameManager.Instance._random.Next(1, 10);
+
+            _health.Heal(_healAmount);
         }
     }
 }
