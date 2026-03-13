@@ -10,7 +10,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Program
     {
-        
         static void Main(string[] args)
         {
             //Game Title/Rules
@@ -114,14 +113,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Draws the game
         static void Draw()
         {
-            Console.Clear();
+            Console.WriteLine("\x1b[3J");
             Console.SetCursorPosition(0, 0);
             GameManager.Instance._gameMap.DrawMap();
             Console.WriteLine();
             Console.WriteLine($"Current Turn: {GameManager.Instance._currentTurn}");
             Console.WriteLine();
-            GameManager.Instance.HudStrings();
 
+            Console.SetCursorPosition(0, 0);
             GameManager.Instance._gamePlayer.DrawCharcter();
             foreach(Enemy em in GameManager.Instance._enemies)
             {
@@ -133,7 +132,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
             
             Console.ResetColor();
-            Thread.Sleep(100);
         }
 
         

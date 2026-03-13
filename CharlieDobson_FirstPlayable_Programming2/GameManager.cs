@@ -40,6 +40,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
         }
 
+        //Collectable Spawner/Enemy Spawner(List)
+        //Interface (IEnemySpawner) to spawn different enemy differently
+        //IGameSpawner 
+
 
         //Will load everything nesscessary
         public void Load()
