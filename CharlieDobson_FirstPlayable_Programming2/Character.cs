@@ -33,10 +33,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Lets the program move the characters
-        public void ChangePosition(int newX, int newY)
+        public void ChangePosition(int movementX, int movementY)
         {
-            _position._xPos += newX;
-            _position._yPos += newY;
+            _position._xPos = movementX;
+            _position._yPos = movementY;
+        }
+
+        public void RespawnPosition(int newX, int newY)
+        {
+            _position._xPos = newX;
+            _position._yPos = newY;
         }
 
         public virtual void Movement()

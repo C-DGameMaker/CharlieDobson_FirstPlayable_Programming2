@@ -10,7 +10,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         public void PrintHUDStrings()
         {
-            int hudX = GameManager.Instance._gameMap._mapLength + 10; // adjust depending on your map width
+            int hudX = GameManager.Instance._gameMap._mapWidth + 10; // adjust depending on your map width
             int hudY = 0;
 
             string[] playerHudLines = GameManager.Instance._gamePlayer.GetHUDString().Split('\n');

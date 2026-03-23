@@ -37,44 +37,18 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
         public override void Movement()
         {
-            _xMovement = 0;
-            _yMovement = 0;
-            Random _random = new Random();
-            int _movement = _random.Next(1, 5);
-
-            if (_movement == 1)
-            {
-                _xMovement++;
-            }
-            else if (_movement == 2)
-            {
-                _xMovement--;
-            }
-            else if (_movement == 3)
-            {
-                _yMovement++;
-            }
-            else if (_movement == 4)
-            {
-                _yMovement--;
-            }
-            else
-            {
-                return;
-            }
-
             int currentX = _position._xPos + _xMovement;
             int currentY = _position._yPos + _yMovement;
 
-            if (currentX > 0 && currentY > 0)
+            if (currentX >= 0 && currentY >= 0)
             {
-                if (currentX < GameManager.Instance._gameMap._mapLength - 1 && currentY < GameManager.Instance._gameMap._mapWidth - 1)
+                if (currentX < GameManager.Instance._gameMap._mapWidth - 1 && currentY < GameManager.Instance._gameMap._mapHeight - 1)
                 {
                     if (GameManager.Instance._gameMap._isOccupied[currentY, currentX] == false)
                     {
-                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = false;
-                        ChangePosition(newX: _xMovement, newY: _yMovement);
-                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = true;
+                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = false;
+                        ChangePosition(movementX: currentX, movementY: currentY);
+                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = true;
                     }
                     if (currentX == GameManager.Instance._gamePlayer._position._xPos && currentY == GameManager.Instance._gamePlayer._position._yPos)
                     {

@@ -72,8 +72,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.Clear();
             while (true)
             {
-                _randomYPosition = _random.Next(1, _gameMap._mapWidth);
-                _randomXPosition = _random.Next(1, _gameMap._mapLength);
+                _randomYPosition = _random.Next(1, _gameMap._mapHeight);
+                _randomXPosition = _random.Next(1, _gameMap._mapWidth);
 
                 if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
                 {
@@ -132,10 +132,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 while (true)
                 {
-                    _randomYPosition = _random.Next(1, _gameMap._mapWidth);
-                    _randomXPosition = _random.Next(1, _gameMap._mapLength);
+                    _randomYPosition = _random.Next(1, _gameMap._mapHeight);
+                    _randomXPosition = _random.Next(1, _gameMap._mapWidth);
 
-                    if (_gameMap._isOccupied[_randomXPosition, _randomYPosition] == false)
+                    if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
                     {
                         break;
                     }
@@ -147,20 +147,20 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 {
                     int heal = _random.Next(1, 10);
                     Collectables newCollectable = new HealthPickup(heal, _randomXPosition, _randomYPosition);
-                    _gameMap._isOccupied[_randomXPosition, _randomYPosition] = true;
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
                     _collectables.Add(newCollectable);
                 }
                 else if(typeOfCollectable == 2)
                 {
                     int gold = _random.Next(1, 5);
                     Collectables newCollectable = new GoldPickup(gold, _randomXPosition, _randomYPosition);
-                    _gameMap._isOccupied[_randomXPosition, _randomYPosition] = true;
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
                     _collectables.Add(newCollectable);
                 }
                 else if (typeOfCollectable == 3)
                 {
                     Collectables newCollectable = new MaxHealPickUp(_randomXPosition, _randomYPosition);
-                    _gameMap._isOccupied[_randomXPosition, _randomYPosition] = true;
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
                     _collectables.Add(newCollectable);
                 }
                 else if (typeOfCollectable == 4)
@@ -178,10 +178,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 while (true)
                 {
-                    _randomYPosition = _random.Next(1, _gameMap._mapWidth);
-                    _randomXPosition = _random.Next(1, _gameMap._mapLength);
+                    _randomXPosition = _random.Next(1, _gameMap._mapWidth);
+                    _randomYPosition = _random.Next(1, _gameMap._mapHeight);
 
-                    if (_gameMap._isOccupied[_randomXPosition, _randomYPosition] == false)
+                    if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
                     {
                         break;
                     }
@@ -195,21 +195,21 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 if (_typeOfEnemy == 1) 
                 {
                     Enemy _newEnemy = new NormalEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
-                    _gameMap._isOccupied[_randomXPosition, _randomYPosition] = true;
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
                     _enemies.Add(_newEnemy);
                 }
                 else if(_typeOfEnemy == 2)
                 {
                     Enemy _newEnemy = new FastEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
-                    _gameMap._isOccupied[_randomXPosition, _randomYPosition] = true;
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
                     _enemies.Add(_newEnemy);
                 }
                 else if(_typeOfEnemy == 3)
                 {
                     Enemy _newEnemy = new SleepEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
-                    _gameMap._isOccupied[_randomXPosition, _randomYPosition] = true;
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
                     _enemies.Add(_newEnemy);
                 }
@@ -217,7 +217,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 {
 
                     Enemy _newEnemy = new NormalEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
-                    _gameMap._isOccupied[_randomXPosition, _randomYPosition] = true;
+                    _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
                     _enemies.Add(_newEnemy);
                 }
@@ -253,8 +253,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                     while (true)
                     {
-                        _randomYPosition = _random.Next(1, _gameMap._mapWidth);
-                        _randomXPosition = _random.Next(1, _gameMap._mapLength);
+                        _randomYPosition = _random.Next(1, _gameMap._mapHeight);
+                        _randomXPosition = _random.Next(1, _gameMap._mapWidth);
 
                         if (_gameMap._isOccupied[_randomYPosition, _randomXPosition] == false)
                         {
@@ -262,9 +262,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         }
                     }
 
-                    _gameMap._isOccupied[em._position._xPos, em._position._yPos] = false;
-                    em.ChangePosition(newX: _randomXPosition, newY: _randomYPosition);
-                    _gameMap._isOccupied[em._position._xPos, em._position._yPos] = true;
+                    _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
+                    em.RespawnPosition(newX: _randomXPosition, newY: _randomYPosition);
+                    _gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
                 }
 
 

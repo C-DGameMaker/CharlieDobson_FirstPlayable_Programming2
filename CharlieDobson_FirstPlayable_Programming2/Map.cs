@@ -15,8 +15,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public string _endlessMap = "MapFile.txt";
         public string[] _inGameMap;
 
+        public int _mapHeight;
         public int _mapWidth;
-        public int _mapLength;
         public int _currentMap;
 
         public bool[,] _isOccupied;
@@ -31,9 +31,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
              _inGameMap = File.ReadAllLines(path: _endlessMap);
 
-             _mapWidth = _inGameMap.Length;
-             _mapLength = _inGameMap[0].Length;
-            _isOccupied = new bool[_mapLength, _mapWidth];
+             _mapHeight = _inGameMap.Length;
+             _mapWidth = _inGameMap[0].Length;
+            _isOccupied = new bool[_mapHeight, _mapWidth];
 
             _writtenMap.Add('▒', ConsoleColor.Blue);
             _writtenMap.Add('░', ConsoleColor.Green);
@@ -49,14 +49,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             // Top border
             Console.SetCursorPosition(0, startY);
-            for (int _border = 0; _border < _mapLength + 2; _border++)
+            for (int _border = 0; _border < _mapWidth + 2; _border++)
             {
                 if (_border == 0)
                 {
                     Console.Write("╔");
                 }
 
-                else if (_border == _mapLength + 1)
+                else if (_border == _mapWidth + 1)
                 {
                     Console.Write("╗");
                 }
@@ -68,12 +68,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
 
 
-            for(int w = 0; w < _mapWidth; w++)
+            for(int w = 0; w < _mapHeight; w++)
             {
                 Console.SetCursorPosition(0, startY + 1 + w);
                 Console.Write("║");
 
-                    for (int l = 0; l < _mapLength; l++)
+                    for (int l = 0; l < _mapWidth; l++)
                     {
                         char _mapTile = _inGameMap[w][l];
 
@@ -92,7 +92,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                     if (_mapTile == '▓')
                     {
-                        _isOccupied[l, w] = true;
+                        _isOccupied[w, l] = true;
                     }
 
                     Console.Write(_mapTile);
@@ -105,15 +105,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             }
 
-            Console.SetCursorPosition(0, startY + _mapWidth + 1);
-            for (int _border = 0; _border < _mapLength  + 2; _border++)
+            Console.SetCursorPosition(0, startY + _mapHeight + 1);
+            for (int _border = 0; _border < _mapWidth  + 2; _border++)
             {
                 if (_border == 0)
                 {
                     Console.Write("╚");
                 }
 
-                else if (_border == _mapLength  + 1)
+                else if (_border == _mapWidth  + 1)
                 {
                     Console.Write("╝");
                 }
@@ -128,14 +128,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public void DrawMapButAnimated()
         {
 
-            for (int _border = 0; _border < _mapLength + 2; _border++)
+            for (int _border = 0; _border < _mapWidth + 2; _border++)
             {
                 if (_border == 0)
                 {
                     Console.Write("╔");
                 }
 
-                else if (_border == _mapLength + 1)
+                else if (_border == _mapWidth + 1)
                 {
                     Console.Write("╗");
                 }
@@ -148,12 +148,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Thread.Sleep(100);
             Console.Write("\n");
 
-            for (int w = 0; w < _mapWidth; w++)
+            for (int w = 0; w < _mapHeight; w++)
             {
                 {
                     Console.Write("║");
 
-                    for (int l = 0; l < _mapLength; l++)
+                    for (int l = 0; l < _mapWidth; l++)
                     {
                         char _mapTile = _inGameMap[w][l];
 
@@ -181,14 +181,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             }
 
-            for (int _border = 0; _border < _mapLength + 2; _border++)
+            for (int _border = 0; _border < _mapWidth + 2; _border++)
             {
                 if (_border == 0)
                 {
                     Console.Write("╚");
                 }
 
-                else if (_border == _mapLength + 1)
+                else if (_border == _mapWidth + 1)
                 {
                     Console.Write("╝");
                 }

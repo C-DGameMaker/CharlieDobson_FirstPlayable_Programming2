@@ -26,10 +26,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             while (true)
             {
-                GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(0, GameManager.Instance._gameMap._mapWidth - 1);
-                GameManager.Instance._randomXPosition = GameManager.Instance._random.Next(0, GameManager.Instance._gameMap._mapLength - 1);
+                GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(0, GameManager.Instance._gameMap._mapHeight - 1);
+                GameManager.Instance._randomXPosition = GameManager.Instance._random.Next(0, GameManager.Instance._gameMap._mapWidth - 1);
 
-                if(GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition] == false)
+                if(GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] == false)
                 {
                     break;
                 }
