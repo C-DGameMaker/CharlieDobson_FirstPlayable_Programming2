@@ -12,6 +12,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public string _playerName;
         public int _goldAmount;
 
+        public float _attackMultipler = 1;
+        public float _goldMultipler = 1;
+
         public Player(string name, int maxHealth, int startingXPos, int startingYPos) : base(maxHealth, startingXPos, startingYPos)
         {
             _playerName = name;
@@ -40,15 +43,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public void Attack(Enemy em)
         {
-            int _attackPower = GameManager.Instance._random.Next(1, 20);
+            int _attackPower = GameManager.Instance._random.Next(1, 6);
 
-            em._health.TakeDamage(_attackPower);
+            em._health.TakeDamage(_attackPower * _attackMultipler);
                 
         }
         public void GetGold(int amount)
         {
-            _goldAmount += amount;
+            _goldAmount = _goldAmount + amount * _goldMultipler;
         }
+
         public override void Movement()
         {
             int currentX = _position._xPos + _xMovement;

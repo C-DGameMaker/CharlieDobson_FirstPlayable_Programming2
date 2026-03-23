@@ -12,11 +12,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
     internal class Map
     {
         Dictionary<char, ConsoleColor> _writtenMap = new Dictionary<char, ConsoleColor>();
-        public string _map = "MapFile.txt";
+        public string _endlessMap = "MapFile.txt";
         public string[] _inGameMap;
 
         public int _mapWidth;
         public int _mapLength;
+        public int _currentMap;
 
         public bool[,] _isOccupied;
 
@@ -28,7 +29,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //MAKE IT SO I CAN READ THE MAP YIPEEEEE
         public void LoadMap()
         {
-             _inGameMap = File.ReadAllLines(path: _map);
+             _inGameMap = File.ReadAllLines(path: _endlessMap);
 
              _mapWidth = _inGameMap.Length;
              _mapLength = _inGameMap[0].Length;

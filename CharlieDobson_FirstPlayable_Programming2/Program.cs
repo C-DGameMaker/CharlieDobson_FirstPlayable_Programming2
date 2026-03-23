@@ -12,54 +12,54 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         static void Main(string[] args)
         {
-            //Game Title/Rules
-            Console.WriteLine("Charlie's super awesome and not boring game");
-            Console.WriteLine();
-
-            Console.WriteLine("Mountain's are grey and immpassible");
-            Console.WriteLine("Water has piranahs that will bite you each turn you're in there");
-
-            Console.WriteLine("Kill enemies, but watch out they can kill you");
-            Console.WriteLine("Enemies drop ");
-            Console.WriteLine();
-
+            
 
             //Lets you make a name for the player
-            Console.WriteLine("Insert a name");
+            Console.WriteLine("PLEASE INSERT A NAME FOR YOUR JOURNEY");
             GameManager.Instance._writtenName = Console.ReadLine();
 
-            //Startin stuff, just loads the map and does stuff. 
+            
 
-            GameManager.Instance.Load();
-
-            Console.ReadKey(true);
             Console.Clear();
 
-
-            ////Starts loading the game, aka animated map cause I wanted to
-            GameManager.Instance._gameMap.DrawMapButAnimated();
-            Console.WriteLine("Press anything to start");
-
-            Console.ReadKey(true);
-            Console.Clear();
-
-            while (GameManager.Instance._isDead == false)
+            Console.WriteLine($"{GameManager.Instance._writtenName}'s Game");
+            StartMenu();
+            ConsoleKey gameStart = Console.ReadKey().Key;
+            if(gameStart == ConsoleKey.E)
             {
-                ProcessInput();
-                Update();
-                Draw();
-
+                GameManager.Instance._gameStateCheck = 0;
+            }
+            else if (gameStart == ConsoleKey.A)
+            {
+                GameManager.Instance._gameStateCheck = 1;
+            }
+            else
+            {
+                Console.WriteLine("NOT ACCEPTABLE. GOODBYE!");
+                Console.ReadKey(true);
+                Environment.Exit(0);
             }
             Console.Clear();
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine("YOU DIED");
 
+            //Startin stuff, just loads the map and does stuff. 
+            GameManager.Instance.Load();
 
-            Console.WriteLine();
-            Console.WriteLine("Exit to play again");
-            Console.ReadKey(true);
+            GameManager.Instance.GamestateChecker();
+            
         }
 
+        //Start Menu
+        public static void StartMenu()
+        {
+            Console.WriteLine("~~~~~~~~~");
+            Console.WriteLine();
+            Console.WriteLine("HIT A TO PLAY ADVENTURE MODE!");
+            Console.WriteLine();
+            Console.WriteLine("HIT E TO PLAY ENDLESS MODE MODE!");
+            Console.WriteLine("~~~~~~~~~");
+        }
+
+        //ENDLESS MODE
         //Takes your input, then turns that into movement
         public static void ProcessInput()
         {
@@ -101,7 +101,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Updates various things based off of stuff actions
-        static void Update()
+        public static void Update()
         {
             GameManager.Instance._gamePlayer.Movement();
             GameManager.Instance.EnemyMovement();
@@ -111,7 +111,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         //Draws the game
-        static void Draw()
+        public static void Draw()
         {
             Console.WriteLine("\x1b[3J");
             Console.SetCursorPosition(0, 0);

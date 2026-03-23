@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
+
     internal class GameManager
     {
         public Map _gameMap = new Map();
@@ -17,6 +18,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public Player _gamePlayer;
         public bool _isDead = false;
         public string _writtenName;
+        public int _gameStateCheck;
 
         public Random _random = new Random();
         public int _randomXPosition;
@@ -44,12 +46,24 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Interface (IEnemySpawner) to spawn different enemy differently
         //IGameSpawner 
 
-
-        //Will load everything nesscessary
-        public void Load()
+        public void GamestateChecker()
         {
-            _gameMap.LoadMap();
+            if (_gameStateCheck == 0)
+            {
+                EndlessMode();
+            }
+            else if(_gameStateCheck == 1)
+            {
+                AdventureMode();
+            }
+            else
+            {
+                Console.WriteLine("Please tell me how you got here.");
+            }
+        }
 
+        public void EndlessMode()
+        {
             while (true)
             {
                 _randomYPosition = _random.Next(1, _gameMap._mapWidth);
@@ -67,6 +81,39 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             EnemySpawning();
             CollectablesSpawning();
+
+            ////Starts loading the game, aka animated map cause I wanted to
+            _gameMap.DrawMapButAnimated();
+            Console.WriteLine("Press anything to start");
+
+            Console.ReadKey(true);
+            Console.Clear();
+
+            while (_isDead == false)
+            {
+                Program.ProcessInput();
+                Program.Update();
+                Program.Draw();
+
+            }
+            Console.Clear();
+            Console.SetCursorPosition(0, 0);
+            Console.WriteLine("YOU DIED");
+
+
+            Console.WriteLine();
+            Console.WriteLine("Exit to play again");
+            Console.ReadKey(true);
+        }
+
+        public void AdventureMode()
+        {
+
+        }
+        //Will load everything nesscessary
+        public void Load()
+        {
+            _gameMap.LoadMap();
 
         }
 
