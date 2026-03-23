@@ -70,7 +70,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             if (currentX > 0 && currentY > 0)
             {
-                if (currentX < GameManager.Instance._gameMap._mapLength && currentY < GameManager.Instance._gameMap._mapWidth)
+                if (currentX < GameManager.Instance._gameMap._mapLength - 1 && currentY < GameManager.Instance._gameMap._mapWidth - 1)
                 {
                     if (GameManager.Instance._gameMap._isOccupied[currentY, currentX] == false)
                     {

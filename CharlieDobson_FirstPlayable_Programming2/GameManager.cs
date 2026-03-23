@@ -11,6 +11,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
     internal class GameManager
     {
         public Map _gameMap = new Map();
+        public PrintHUD huds = new PrintHUD();
 
         public int _currentTurn = 0;
         public List<Enemy> _enemies = new List<Enemy>();
@@ -23,6 +24,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public Random _random = new Random();
         public int _randomXPosition;
         public int _randomYPosition;
+
+        static int _xMarg = 1;
+        static int _yMarg = 1;
 
         //So You cannot create another game manager
         private GameManager() { }
@@ -64,6 +68,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public void EndlessMode()
         {
+            GameManager.Instance._gameMap.DrawMap();
+            Console.Clear();
             while (true)
             {
                 _randomYPosition = _random.Next(1, _gameMap._mapWidth);
@@ -79,8 +85,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _gamePlayer = new Player(name: _writtenName, maxHealth: 100, startingXPos: _randomXPosition, startingYPos: _randomYPosition);
             _gameMap._isOccupied[_gamePlayer._position._yPos, _gamePlayer._position._xPos] = true;
 
-            EnemySpawning();
-            CollectablesSpawning();
 
             ////Starts loading the game, aka animated map cause I wanted to
             _gameMap.DrawMapButAnimated();
@@ -88,6 +92,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             Console.ReadKey(true);
             Console.Clear();
+
+            EnemySpawning();
+            CollectablesSpawning();
 
             while (_isDead == false)
             {
@@ -187,7 +194,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                 if (_typeOfEnemy == 1) 
                 {
-                    Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
+                    Enemy _newEnemy = new NormalEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
                     _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
                     _enemies.Add(_newEnemy);
@@ -209,7 +216,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 else
                 {
 
-                    Enemy _newEnemy = new Enemy(_enemyHealth, _randomXPosition, _randomYPosition);
+                    Enemy _newEnemy = new NormalEnemy(_enemyHealth, _randomXPosition, _randomYPosition);
                     _gameMap._isOccupied[_randomYPosition, _randomXPosition] = true;
 
                     _enemies.Add(_newEnemy);
@@ -226,16 +233,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
         }
 
-        public void HudStrings()
-        {
-            Console.WriteLine(_gamePlayer.GetHUDString());
-            Console.WriteLine();
-            foreach(Enemy em in _enemies)
-            {
-                Console.WriteLine(em.GetHUDString());
-                Console.WriteLine();
-            }
-        }
+        
 
         public void DeathCheck()
         {

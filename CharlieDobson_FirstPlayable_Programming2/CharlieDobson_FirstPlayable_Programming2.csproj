@@ -53,8 +53,10 @@
     <Compile Include="HealthPickup.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MaxHealPickUp.cs" />
+    <Compile Include="NormalEnemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Position.cs" />
+    <Compile Include="PrintHUD.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shop.cs" />

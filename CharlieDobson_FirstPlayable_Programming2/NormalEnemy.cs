@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
-    internal class Enemy : Character
+    internal class NormalEnemy : Enemy
     {
-        //Makes Enemy
-        public Enemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
+        public NormalEnemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
         {
             _health = new Health(_maxHealth);
             _position = new Position(_startingXPos, _startingYPos);
@@ -27,6 +25,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public override void DrawCharacter(int xMarg, int yMarg)
         {
             base.DrawCharacter(xMarg, yMarg);
+            Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.Write("&");
         }
 
         public virtual void Attack()
@@ -86,8 +86,5 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _xMovement = 0;
             _yMovement = 0;
         }
-
     }
-
 }
-

@@ -58,7 +58,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             int currentX = _position._xPos + _xMovement;
             int currentY = _position._yPos + _yMovement;
 
-            if(currentX > 0 && currentY > 0)
+            if(currentX >= 0 && currentY >= 0)
             {
                 if(currentX < GameManager.Instance._gameMap._mapLength && currentY < GameManager.Instance._gameMap._mapWidth)
                 {

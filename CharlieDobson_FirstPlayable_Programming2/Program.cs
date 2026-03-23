@@ -51,14 +51,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public static void StartMenu()
         {
             Console.WriteLine("~~~~~~~~~");
-            Console.WriteLine();
             Console.WriteLine("HIT A TO PLAY ADVENTURE MODE!");
             Console.WriteLine();
             Console.WriteLine("HIT E TO PLAY ENDLESS MODE MODE!");
             Console.WriteLine("~~~~~~~~~");
         }
 
-        //ENDLESS MODE
+        
         //Takes your input, then turns that into movement
         public static void ProcessInput()
         {
@@ -93,6 +92,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 GameManager.Instance._gamePlayer._xMovement++;
             }
 
+            while(Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
+            }
+
 
 
 
@@ -112,11 +116,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Draws the game
         public static void Draw()
         {
-            Console.WriteLine("\x1b[3J");
             Console.SetCursorPosition(0, 0);
             GameManager.Instance._gameMap.DrawMap();
             Console.WriteLine();
             Console.WriteLine($"Current Turn: {GameManager.Instance._currentTurn}");
+            GameManager.Instance.huds.PrintHUDStrings();
             Console.WriteLine();
 
             Console.SetCursorPosition(0, 0);
@@ -127,7 +131,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
             foreach(Collectables cl in GameManager.Instance._collectables)
             {
-                cl.DrawCollectable();
+                cl.DrawCollectable(_xMarg, _yMarg);
             }
             
             Console.ResetColor();
