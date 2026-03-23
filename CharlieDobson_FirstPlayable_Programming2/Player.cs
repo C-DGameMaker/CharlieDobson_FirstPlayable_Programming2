@@ -64,9 +64,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 {
                     if (GameManager.Instance._gameMap._isOccupied[currentY, currentX] == false)
                     {
-                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = false;
+                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = false;
                         ChangePosition(newX: _xMovement, newY: _yMovement);
-                        GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = true;
+                        GameManager.Instance._gameMap._isOccupied[_position._xPos, _position._yPos] = true;
                     }
 
                     foreach(Enemy em in GameManager.Instance._enemies)

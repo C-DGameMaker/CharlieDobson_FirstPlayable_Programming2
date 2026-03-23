@@ -28,6 +28,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine($"Cost: {_item3Cost}");
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
+            Console.WriteLine("");
+            Console.WriteLine($"Current Gold amount: {GameManager.Instance._gamePlayer._goldAmount}");
+
         }
 
         public void Buy()

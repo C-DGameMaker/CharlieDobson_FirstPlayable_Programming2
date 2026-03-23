@@ -33,7 +33,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
              _mapWidth = _inGameMap.Length;
              _mapLength = _inGameMap[0].Length;
-            _isOccupied = new bool[_mapWidth, _mapLength];
+            _isOccupied = new bool[_mapLength, _mapWidth];
 
             _writtenMap.Add('▒', ConsoleColor.Blue);
             _writtenMap.Add('░', ConsoleColor.Green);
@@ -92,7 +92,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                     if (_mapTile == '▓')
                     {
-                        _isOccupied[w, l] = true;
+                        _isOccupied[l, w] = true;
                     }
 
                     Console.Write(_mapTile);
