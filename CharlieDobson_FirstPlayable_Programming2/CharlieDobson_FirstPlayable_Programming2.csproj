@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adventure.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Collectables.cs" />
+    <Compile Include="Endless.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="FastEnemy.cs" />
     <Compile Include="GameManager.cs" />
@@ -66,6 +68,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Level01.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="MapFile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

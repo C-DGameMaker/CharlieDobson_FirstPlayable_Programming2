@@ -41,10 +41,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.Clear();
 
             //Startin stuff, just loads the map and does stuff. 
-            GameManager.Instance.Load();
-
             GameManager.Instance.GamestateChecker();
-            
+
         }
 
         //Start Menu

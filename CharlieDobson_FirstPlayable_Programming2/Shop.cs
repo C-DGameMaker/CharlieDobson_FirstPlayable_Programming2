@@ -14,6 +14,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public static int _item3Cost;
 
         private ConsoleKey itemBought;
+        public Shop(int cost1, int cost2, int cost3)
+        {
+            _item1Cost = cost1;
+            _item2Cost = cost2;
+            _item3Cost = cost3;
+        }
 
         public void DisplayShop()
         {
@@ -30,6 +36,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             Console.WriteLine("");
             Console.WriteLine($"Current Gold amount: {GameManager.Instance._gamePlayer._goldAmount}");
+            Buy();
 
         }
 
