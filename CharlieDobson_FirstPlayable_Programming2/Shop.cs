@@ -51,7 +51,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 {
                     if (GameManager.Instance._gamePlayer._goldAmount > _item2Cost)
                     {
-                        GameManager.Instance._gamePlayer._attackMultipler = GameManager.Instance._gamePlayer._attackMultipler + 0.5f;
+                        GameManager.Instance._gamePlayer._attackMultipler = GameManager.Instance._gamePlayer._attackMultipler + 1;
                         _item1Cost += 20;
                     }
                     else
@@ -63,7 +63,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 {
                     if (GameManager.Instance._gamePlayer._goldAmount > _item3Cost)
                     {
-                        GameManager.Instance._gamePlayer._goldMultipler = GameManager.Instance._gamePlayer._goldMultipler + 0.5f;
+                        GameManager.Instance._gamePlayer._goldMultipler = GameManager.Instance._gamePlayer._goldMultipler + 1;
                         _item1Cost += 30;
                     }
                     else

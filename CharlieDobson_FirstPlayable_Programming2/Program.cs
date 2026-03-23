@@ -10,16 +10,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Program
     {
+        static int _xMarg = 1;
+        static int _yMarg = 1;
         static void Main(string[] args)
         {
-            
-
             //Lets you make a name for the player
             Console.WriteLine("PLEASE INSERT A NAME FOR YOUR JOURNEY");
             GameManager.Instance._writtenName = Console.ReadLine();
 
             
-
             Console.Clear();
 
             Console.WriteLine($"{GameManager.Instance._writtenName}'s Game");
@@ -121,10 +120,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine();
 
             Console.SetCursorPosition(0, 0);
-            GameManager.Instance._gamePlayer.DrawCharcter();
+            GameManager.Instance._gamePlayer.DrawCharacter(_xMarg, _yMarg);
             foreach(Enemy em in GameManager.Instance._enemies)
             {
-                em.DrawCharcter();
+                em.DrawCharacter(_xMarg, _yMarg);
             }
             foreach(Collectables cl in GameManager.Instance._collectables)
             {

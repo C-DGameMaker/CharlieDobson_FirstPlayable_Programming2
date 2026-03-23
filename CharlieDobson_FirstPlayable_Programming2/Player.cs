@@ -12,8 +12,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public string _playerName;
         public int _goldAmount;
 
-        public float _attackMultipler = 1;
-        public float _goldMultipler = 1;
+        public int _attackMultipler = 1;
+        public int _goldMultipler = 1;
 
         public Player(string name, int maxHealth, int startingXPos, int startingYPos) : base(maxHealth, startingXPos, startingYPos)
         {
@@ -33,9 +33,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             return _hudString;
 
         }
-        public override void DrawCharcter()
+        public override void DrawCharacter(int xMarg, int yMarg)
         {
-            Console.SetCursorPosition(_position._xPos, _position._yPos);
+            base.DrawCharacter(xMarg, yMarg);
             Console.BackgroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Write("*");

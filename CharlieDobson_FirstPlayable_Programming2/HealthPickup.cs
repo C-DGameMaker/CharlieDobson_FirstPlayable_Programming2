@@ -15,9 +15,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _position = new Position(startingXPos, startingYPos);
         }
 
-        public override void DrawCollectable()
+        public override void DrawCollectable(int xMarg, int yMarg)
         {
-            Console.SetCursorPosition(_position._xPos, _position._yPos);
+            base.DrawCollectable(xMarg, yMarg);
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
             Console.Write("+");
         }

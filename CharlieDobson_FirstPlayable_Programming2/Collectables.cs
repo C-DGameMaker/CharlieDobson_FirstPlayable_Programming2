@@ -15,9 +15,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _position = new Position(startingXPos, startingYPos);
         }
 
-        public virtual void DrawCollectable()
+        public virtual void DrawCollectable(int xMarg, int yMarg)
         {
-
+            Console.SetCursorPosition(_position._xPos + xMarg, _position._yPos + yMarg);
         }
 
         public virtual void PickUP()

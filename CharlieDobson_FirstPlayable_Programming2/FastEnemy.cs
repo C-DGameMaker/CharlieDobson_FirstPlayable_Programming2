@@ -23,9 +23,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         }
 
-        public override void DrawCharcter()
+        public override void DrawCharacter(int xMarg, int yMarg)
         {
-            Console.SetCursorPosition(_position._xPos, _position._yPos);
+            base.DrawCharacter(xMarg, yMarg);
             Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.Write("0");
         }
