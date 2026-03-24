@@ -21,6 +21,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _item3Cost = cost3;
         }
 
+        //Displays the shop Menu
         public void DisplayShop()
         {
             Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -43,6 +44,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             Console.WriteLine("You may buy something, or press C to continue your journey.");
             itemBought = ConsoleKey.NoName;
+
+            //Runs through and lets you buy items/Continue, will check to make sure you have enough before buying.
             while (itemBought == ConsoleKey.NoName)
             {
                 itemBought = Console.ReadKey().Key;
@@ -91,11 +94,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     }
 
                 }
+                //Continues the game
                 else if(itemBought == ConsoleKey.C)
                 {
                     Console.Write("Thank you Come again!");
                     break;
                 }
+                //Doesnt do anything but lets the thing continue until you hit a proper key
                 else
                 {
                     itemBought = ConsoleKey.NoName;

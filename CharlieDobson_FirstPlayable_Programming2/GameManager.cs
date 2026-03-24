@@ -51,7 +51,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         
-
+        //Checks the game state selected, and will set the game to that
         public void GamestateChecker()
         {
             if (_gameStateCheck == 0)
@@ -74,7 +74,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
         }
 
-
+        //Moves all enemies in the list
         public void EnemyMovement()
         {
             foreach(Enemy em in _enemies)
@@ -84,7 +84,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         }
 
         
-
+        //Checks to see whats dead
         public void DeathCheck()
         {
             if(_gamePlayer._health.CurrentHealth == 0)
@@ -122,6 +122,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
         }
         
+        //Checks the tile to see what kind it is, and does an action based off of that
         public void CheckTile()
         {
             char _mapTile = _gameMap._inGameMap[_gamePlayer._position._yPos][_gamePlayer._position._xPos];
