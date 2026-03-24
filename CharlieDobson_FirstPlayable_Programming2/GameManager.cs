@@ -17,7 +17,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public int _currentTurn = 0;
         public List<Enemy> _enemies = new List<Enemy>();
+        public Enemy enemySpawner = new Enemy(1, 1, 1);
         public List<Collectables> _collectables = new List<Collectables>();
+        public Collectables collectableSpawner = new Collectables(1, 1);
         public Player _gamePlayer;
         public bool _isDead = false;
         public string _writtenName;
@@ -61,6 +63,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
             else if(_gameStateCheck == 1)
             {
+                string _path = "LevelFile.txt";
+                _gameMap = new Map(_path);
+                _gameMap.LoadMap();
                 adventure.AdventureMode();
             }
             else
@@ -91,6 +96,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 if(em._health.CurrentHealth == 0)
                 {
+                    adventure.enemyKills++;
                     int _goldAmount = _random.Next(1, 11);
                     GameManager.Instance._gamePlayer.GetGold(_goldAmount);
 
@@ -124,15 +130,41 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 _gamePlayer._health.TakeDamage(1);
             }
-
-            foreach(Enemy em in _enemies)
+            else if(_mapTile == '█')
             {
-                _mapTile = _gameMap._inGameMap[em._position._yPos][em._position._xPos];
-
-                if (_mapTile == '▒')
+                int chance = _random.Next(1, 3);
+                if(chance == 1)
                 {
-                    em._health.TakeDamage(1);
+                    _gamePlayer._health.TakeDamage(5);
                 }
+                else
+                {
+                    _gamePlayer._health.Heal(5);
+                }
+            }
+
+                foreach (Enemy em in _enemies)
+                {
+                    _mapTile = _gameMap._inGameMap[em._position._yPos][em._position._xPos];
+
+                    if (_mapTile == '▒')
+                    {
+                        em._health.TakeDamage(1);
+                    }
+                else if (_mapTile == '█')
+                {
+                    int chance = _random.Next(1, 3);
+                    if (chance == 1)
+                    {
+                        em._health.TakeDamage(5);
+                    }
+                    else
+                    {
+                        em._health.Heal(5);
+                    }
+                }
+
+
             }
         }
     }

@@ -9,20 +9,80 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Adventure
     {
-        public string Level01;
-        bool inLevel;
+        static bool inLevel;
+        public int enemyKills;
 
-        public Shop shop = new Shop(10, 10, 10);
+        public Shop shop = new Shop(100, 125, 300);
         public void AdventureMode()
         {
             inLevel = true;
 
-            if(inLevel = false)
+            GameManager.Instance._gameMap.DrawMap();
+            Console.Clear();
+            while (true)
+            {
+                GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapHeight);
+                GameManager.Instance._randomXPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapWidth);
+
+                if (GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] == false)
+                {
+                    break;
+                }
+            }
+
+            //Creates player properly, then sets the spot as occupied amd shows your hud
+            GameManager.Instance._gamePlayer = new Player(name: GameManager.Instance._writtenName, maxHealth: 100, startingXPos: GameManager.Instance._randomXPosition, startingYPos: GameManager.Instance._randomYPosition);
+            GameManager.Instance._gameMap._isOccupied[GameManager.Instance._gamePlayer._position._yPos, GameManager.Instance._gamePlayer._position._xPos] = true;
+
+
+            ////Starts loading the game, aka animated map cause I wanted to
+            GameManager.Instance._gameMap.DrawMapButAnimated();
+            Console.WriteLine("Kill 10 Enemys to progress");
+
+            Console.ReadKey(true);
+            Console.Clear();
+
+            GameManager.Instance.enemySpawner.EnemySpawning(1, 26);
+            GameManager.Instance.collectableSpawner.CollectablesSpawning(1, 26);
+            enemyKills = 0;
+            while (inLevel == true && GameManager.Instance._isDead == false)
+            {
+                Program.ProcessInput();
+                AdventureUpdate();
+                Program.Draw();
+            }
+
+            Console.Clear();
+            if (GameManager.Instance._isDead == false)
             {
                 shop.DisplayShop();
-            }
-          
+                shop.Buy();
+                Console.ReadKey(true);
+                Console.Clear();
+                Console.WriteLine("There is to be more to your adventure later, come back when there is more.\n You may go play Endless mode, simply exit and play again.");
 
+                Console.ReadKey(true);
+            }
+            else
+            {
+                Console.WriteLine("You have met an end to your journey, come back when you have proven yourself stronger.");
+
+                Console.ReadKey(true);
+            }
+        }
+
+        public void AdventureUpdate()
+        {
+            GameManager.Instance._gamePlayer.Movement();
+            GameManager.Instance.EnemyMovement();
+            GameManager.Instance.CheckTile();
+            GameManager.Instance.DeathCheck();
+            GameManager.Instance._currentTurn++;
+            if(enemyKills >= 25)
+            {
+                inLevel = false;
+            }
         }
     }
 }
+

@@ -42,16 +42,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _writtenMap.Add('░', ConsoleColor.Green);
             _writtenMap.Add('▓', ConsoleColor.Gray);
             _writtenMap.Add('█', ConsoleColor.DarkGreen);
+            _writtenMap.Add('■', ConsoleColor.DarkGray);
         }
 
        
         //Will load the map immedietly
         public void DrawMap()
         {
-            int startY = Console.CursorTop;
 
             // Top border
-            Console.SetCursorPosition(0, startY);
             for (int _border = 0; _border < _mapWidth + 2; _border++)
             {
                 if (_border == 0)
@@ -61,7 +60,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                 else if (_border == _mapWidth + 1)
                 {
-                    Console.Write("╗");
+                    Console.WriteLine("╗");
                 }
                 else
                 {
@@ -73,7 +72,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             for(int w = 0; w < _mapHeight; w++)
             {
-                Console.SetCursorPosition(0, startY + 1 + w);
                 Console.Write("║");
 
                     for (int l = 0; l < _mapWidth; l++)
@@ -93,22 +91,21 @@ namespace CharlieDobson_FirstPlayable_Programming2
                             Environment.Exit(0);
                         }
 
-                    if (_mapTile == '▓')
-                    {
-                        _isOccupied[w, l] = true;
-                    }
+                        if (_mapTile == '▓')
+                        {
+                            _isOccupied[w, l] = true;
+                        }
 
-                    Console.Write(_mapTile);
+                        Console.Write(_mapTile);
                         
                     }
 
                     Console.ResetColor();
-                    Console.Write("║");
+                    Console.WriteLine("║");
                 
 
             }
 
-            Console.SetCursorPosition(0, startY + _mapHeight + 1);
             for (int _border = 0; _border < _mapWidth  + 2; _border++)
             {
                 if (_border == 0)

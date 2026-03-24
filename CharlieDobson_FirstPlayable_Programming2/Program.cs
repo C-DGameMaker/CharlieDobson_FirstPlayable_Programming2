@@ -10,8 +10,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Program
     {
-        static int _xMarg = 1;
-        static int _yMarg = 1;
+        public static int _xMarg = 1;
+        public static int _yMarg = 1;
         static void Main(string[] args)
         {
             //Lets you make a name for the player

@@ -36,20 +36,24 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             Console.WriteLine("");
             Console.WriteLine($"Current Gold amount: {GameManager.Instance._gamePlayer._goldAmount}");
-            Buy();
 
         }
 
         public void Buy()
         {
-            while(itemBought == ConsoleKey.NoName)
+            Console.WriteLine("You may buy something, or press C to continue your journey.");
+            itemBought = ConsoleKey.NoName;
+            while (itemBought == ConsoleKey.NoName)
             {
                 itemBought = Console.ReadKey().Key;
-                if(itemBought == ConsoleKey.NumPad1)
+
+                if(itemBought == ConsoleKey.NumPad1 || itemBought == ConsoleKey.D1)
                 {
                     if(GameManager.Instance._gamePlayer._goldAmount > _item1Cost)
                     {
+                        GameManager.Instance._gamePlayer._goldAmount -= _item1Cost;
                         GameManager.Instance._gamePlayer._health.MaxHealthIncrease(5);
+                        Console.Write("You bought item 1.");
                         _item1Cost += 10;
                     }
                     else
@@ -57,11 +61,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         Console.Write("You do not have enough to buy item 1.");
                     }
                 }
-                else if (itemBought == ConsoleKey.NumPad1)
+                else if (itemBought == ConsoleKey.NumPad2 || itemBought == ConsoleKey.D2)
                 {
                     if (GameManager.Instance._gamePlayer._goldAmount > _item2Cost)
                     {
+                        GameManager.Instance._gamePlayer._goldAmount -= _item2Cost;
                         GameManager.Instance._gamePlayer._attackMultipler = GameManager.Instance._gamePlayer._attackMultipler + 1;
+                        Console.Write("You bought item 2.");
                         _item1Cost += 20;
                     }
                     else
@@ -69,22 +75,26 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         Console.Write("You do not have enough to buy item 2.");
                     }
                 }
-                else if (itemBought == ConsoleKey.NumPad1)
+                else if (itemBought == ConsoleKey.NumPad3 || itemBought == ConsoleKey.D3)
                 {
                     if (GameManager.Instance._gamePlayer._goldAmount > _item3Cost)
                     {
+                        GameManager.Instance._gamePlayer._goldAmount -= _item3Cost;
                         GameManager.Instance._gamePlayer._goldMultipler = GameManager.Instance._gamePlayer._goldMultipler + 1;
+                        Console.Write("You bought item 3.");
                         _item1Cost += 30;
                     }
                     else
                     {
                         Console.Write("You do not have enough to buy item 3.");
+                        
                     }
 
                 }
                 else if(itemBought == ConsoleKey.C)
                 {
                     Console.Write("Thank you Come again!");
+                    break;
                 }
                 else
                 {
