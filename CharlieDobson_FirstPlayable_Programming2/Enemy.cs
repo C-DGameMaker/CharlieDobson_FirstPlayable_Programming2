@@ -60,62 +60,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _xMovement = 0;
             _yMovement = 0;
         }
-
-        //The enemy spawning class has been moved into the enemy class. 
-        public void EnemySpawning(int minEnemy, int maxEnemy)
-        {
-            int enemies = GameManager.Instance._random.Next(minEnemy, maxEnemy);
-
-            for (int i = 0; i < enemies; i++)
-            {
-                while (true)
-                {
-                    GameManager.Instance._randomXPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapWidth);
-                    GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapHeight);
-
-                    if (GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] == false)
-                    {
-                        break;
-                    }
-                }
-
-                int _enemyHealth = GameManager.Instance._random.Next(1, 6);
-                _enemyHealth *= 10;
-
-                int _typeOfEnemy = GameManager.Instance._random.Next(1, 4);
-
-                if (_typeOfEnemy == 1)
-                {
-                    Enemy _newEnemy = new NormalEnemy(_enemyHealth, GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition);
-                    GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] = true;
-
-                    GameManager.Instance._enemies.Add(_newEnemy);
-                }
-                else if (_typeOfEnemy == 2)
-                {
-                    Enemy _newEnemy = new FastEnemy(_enemyHealth, GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition);
-                    GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] = true;
-
-                    GameManager.Instance._enemies.Add(_newEnemy);
-                }
-                else if (_typeOfEnemy == 3)
-                {
-                    Enemy _newEnemy = new SleepEnemy(_enemyHealth, GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition);
-                    GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] = true;
-
-                    GameManager.Instance._enemies.Add(_newEnemy);
-                }
-                else
-                {
-
-                    Enemy _newEnemy = new NormalEnemy(_enemyHealth, GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition);
-                    GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] = true;
-
-                    GameManager.Instance._enemies.Add(_newEnemy);
-                }
-
-            }
-        }
+        
 
     }
 

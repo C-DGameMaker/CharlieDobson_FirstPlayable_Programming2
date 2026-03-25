@@ -42,8 +42,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.ReadKey(true);
             Console.Clear();
 
-            GameManager.Instance.enemySpawner.EnemySpawning(1, 26);
-            GameManager.Instance.collectableSpawner.CollectablesSpawning(1, 26);
+            GameManager.Instance.spawner.EnemySpawning(1, 26);
+            GameManager.Instance.spawner.CollectablesSpawning(1, 26);
             enemyKills = 0;
             while (inLevel == true && GameManager.Instance._isDead == false)
             {

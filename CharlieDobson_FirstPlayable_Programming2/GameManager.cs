@@ -14,12 +14,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public PrintHUD huds = new PrintHUD();
         public Endless endless = new Endless();
         public Adventure adventure = new Adventure();
+        public Spawner spawner = new Spawner();
 
         public int _currentTurn = 0;
         public List<Enemy> _enemies = new List<Enemy>();
-        public Enemy enemySpawner = new Enemy(1, 1, 1);
         public List<Collectables> _collectables = new List<Collectables>();
-        public Collectables collectableSpawner = new Collectables(1, 1);
         public Player _gamePlayer;
         public bool _isDead = false;
         public string _writtenName;
