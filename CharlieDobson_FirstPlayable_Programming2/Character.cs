@@ -39,12 +39,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _position._yPos = movementY;
         }
 
-        public void RespawnPosition(int newX, int newY)
-        {
-            _position._xPos = newX;
-            _position._yPos = newY;
-        }
-
         public virtual void Movement()
         {
             _position._xPos += _xMovement;
