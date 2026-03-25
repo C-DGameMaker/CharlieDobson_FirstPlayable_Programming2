@@ -114,7 +114,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     }
 
                     _gameMap._isOccupied[em._position._yPos, em._position._xPos] = false;
-                    em.RespawnPosition(newX: _randomXPosition, newY: _randomYPosition);
+                    em.ChangePosition(movementX: _randomXPosition, movementY: _randomYPosition);
                     _gameMap._isOccupied[em._position._yPos, em._position._xPos] = true;
                 }
 
