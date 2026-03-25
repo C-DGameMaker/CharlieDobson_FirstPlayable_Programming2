@@ -61,6 +61,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             _yMovement = 0;
         }
 
+        //The enemy spawning class has been moved into the enemy class. 
         public void EnemySpawning(int minEnemy, int maxEnemy)
         {
             int enemies = GameManager.Instance._random.Next(minEnemy, maxEnemy);

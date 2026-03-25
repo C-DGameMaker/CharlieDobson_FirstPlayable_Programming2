@@ -37,7 +37,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             ////Starts loading the game, aka animated map cause I wanted to
             GameManager.Instance._gameMap.DrawMapButAnimated();
-            Console.WriteLine("Kill 10 Enemys to progress");
+            Console.WriteLine("Kill 25 Enemys to progress");
 
             Console.ReadKey(true);
             Console.Clear();

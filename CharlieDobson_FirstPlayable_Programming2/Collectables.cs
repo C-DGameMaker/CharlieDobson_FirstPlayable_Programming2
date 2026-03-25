@@ -20,6 +20,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.SetCursorPosition(_position._xPos + xMarg, _position._yPos + yMarg);
         }
 
+        //The collectable spawning class has been moved into the collectables
         public  void CollectablesSpawning(int minCollect, int maxCollect)
         {
             int collectables = GameManager.Instance._random.Next(minCollect, maxCollect);
