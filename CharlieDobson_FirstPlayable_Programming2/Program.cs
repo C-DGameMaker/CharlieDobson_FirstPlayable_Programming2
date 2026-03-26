@@ -51,7 +51,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine("~~~~~~~~~");
             Console.WriteLine("HIT A TO PLAY ADVENTURE MODE!");
             Console.WriteLine();
-            Console.WriteLine("HIT E TO PLAY ENDLESS MODE MODE!");
+            Console.WriteLine("HIT E TO PLAY ENDLESS MODE!");
             Console.WriteLine("~~~~~~~~~");
         }
 
