@@ -22,7 +22,20 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public virtual void PickUP()
         {
+            while (true)
+            {
+                GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(0, GameManager.Instance._gameMap._mapHeight - 1);
+                GameManager.Instance._randomXPosition = GameManager.Instance._random.Next(0, GameManager.Instance._gameMap._mapWidth - 1);
 
+                if (GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] == false)
+                {
+                    break;
+                }
+            }
+
+            GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = false;
+            _position = new Position(GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition);
+            GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = true;
         }
 
     }

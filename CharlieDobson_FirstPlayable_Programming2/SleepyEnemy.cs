@@ -60,15 +60,15 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
             else
             {
-                Sleepy();
+                Sleep();
             }
 
             base.Movement();
         }
 
-        public void Sleepy()
+        public void Sleep()
         {
-            int _healAmount = GameManager.Instance._random.Next(1, 10);
+            int _healAmount = GameManager.Instance._random.Next(1, 6);
 
             _health.Heal(_healAmount);
         }

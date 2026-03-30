@@ -41,6 +41,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
         }
 
+        //Increases Max Health
         public void MaxHealthIncrease(int _amount)
         {
             MaxHealth += _amount;
