@@ -12,8 +12,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         public Map _gameMap;
         public PrintHUD huds = new PrintHUD();
-        public Endless endless = new Endless();
-        public Adventure adventure = new Adventure();
+        public EndlessMode endless = new EndlessMode();
+        public AdventureMode adventure = new AdventureMode();
         public Spawner spawner = new Spawner();
 
         public int _currentTurn = 0;
@@ -58,14 +58,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 string _path = "MapFile.txt";
                 _gameMap = new Map(_path);
                 _gameMap.LoadMap();
-                endless.EndlessMode();
+                endless.Endless();
             }
             else if(_gameStateCheck == 1)
             {
                 string _path = "LevelFile.txt";
                 _gameMap = new Map(_path);
                 _gameMap.LoadMap();
-                adventure.AdventureMode();
+                adventure.Adventure();
             }
             else
             {

@@ -43,10 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adventure.cs" />
+    <Compile Include="AdventureMode.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Collectables.cs" />
-    <Compile Include="Endless.cs" />
+    <Compile Include="EndlessMode.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="FastEnemy.cs" />
     <Compile Include="GameManager.cs" />

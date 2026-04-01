@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
-    internal class GameMode
+    abstract class GameMode
     {
         public static int _xMarg = 1;
         public static int _yMarg = 1;
-        public virtual void ProcessInput()
+        public void ProcessInput()
         {
             if (GameManager.Instance._currentTurn == 0) return;
 
