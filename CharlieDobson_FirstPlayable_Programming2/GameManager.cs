@@ -55,16 +55,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             if (_gameStateCheck == 0)
             {
-                string _path = "MapFile.txt";
-                _gameMap = new Map(_path);
-                _gameMap.LoadMap();
+                endless.Intialize();
                 endless.Endless();
             }
             else if(_gameStateCheck == 1)
             {
-                string _path = "LevelFile.txt";
-                _gameMap = new Map(_path);
-                _gameMap.LoadMap();
+                adventure.Intialize();
                 adventure.Adventure();
             }
             else

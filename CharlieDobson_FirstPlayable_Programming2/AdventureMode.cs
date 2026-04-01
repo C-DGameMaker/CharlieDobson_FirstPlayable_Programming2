@@ -16,34 +16,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public void Adventure()
         {
             inLevel = true;
-
-            GameManager.Instance._gameMap.DrawMap();
-            Console.Clear();
-            while (true)
-            {
-                GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapHeight);
-                GameManager.Instance._randomXPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapWidth);
-
-                if (GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] == false)
-                {
-                    break;
-                }
-            }
-
-            //Creates player properly, then sets the spot as occupied amd shows your hud
-            GameManager.Instance._gamePlayer = new Player(name: GameManager.Instance._writtenName, maxHealth: 100, startingXPos: GameManager.Instance._randomXPosition, startingYPos: GameManager.Instance._randomYPosition);
-            GameManager.Instance._gameMap._isOccupied[GameManager.Instance._gamePlayer._position._yPos, GameManager.Instance._gamePlayer._position._xPos] = true;
-
-
-            ////Starts loading the game, aka animated map cause I wanted to
-            GameManager.Instance._gameMap.DrawMapButAnimated();
             Console.WriteLine("Kill 25 Enemys to progress");
 
             Console.ReadKey(true);
             Console.Clear();
 
-            GameManager.Instance.spawner.EnemySpawning(1, 26);
-            GameManager.Instance.spawner.CollectablesSpawning(1, 26);
             enemyKills = 0;
             while (inLevel == true && GameManager.Instance._isDead == false)
             {
@@ -71,6 +48,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
             }
         }
 
+        public override void Intialize()
+        {
+            _path = "LevelFile.txt";
+            base.Intialize();
+        }
         public override void Update()
         {
             GameManager.Instance._gamePlayer.Movement();

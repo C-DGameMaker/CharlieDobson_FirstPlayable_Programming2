@@ -8,8 +8,40 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     abstract class GameMode
     {
+        public string _path = "";
         public static int _xMarg = 1;
         public static int _yMarg = 1;
+
+        public virtual void Intialize()
+        {
+            GameManager.Instance._gameMap = new Map(_path);
+            GameManager.Instance._gameMap.LoadMap();
+            GameManager.Instance._gameMap.DrawMap();
+            Console.Clear();
+
+            GameManager.Instance._gameMap.DrawMapButAnimated();
+            Console.ReadKey(true);
+            Console.Clear();
+
+            while (true)
+            {
+                GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapHeight);
+                GameManager.Instance._randomXPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapWidth);
+
+                if (GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] == false)
+                {
+                    break;
+                }
+            }
+
+            //Creates player properly, then sets the spot as occupied amd shows your hud
+            GameManager.Instance._gamePlayer = new Player(name: GameManager.Instance._writtenName, maxHealth: 100, startingXPos: GameManager.Instance._randomXPosition, startingYPos: GameManager.Instance._randomYPosition);
+            GameManager.Instance._gameMap._isOccupied[GameManager.Instance._gamePlayer._position._yPos, GameManager.Instance._gamePlayer._position._xPos] = true;
+
+
+            GameManager.Instance.spawner.EnemySpawning(1, 26);
+            GameManager.Instance.spawner.CollectablesSpawning(1, 26);
+        }
         public void ProcessInput()
         {
             if (GameManager.Instance._currentTurn == 0) return;
