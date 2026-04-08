@@ -4,12 +4,14 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using static CharlieDobson_FirstPlayable_Programming2.GameManager;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
 
     internal class GameManager
     {
+        #region Variables
         public Map _gameMap;
         public PrintHUD huds = new PrintHUD();
         public EndlessMode endless = new EndlessMode();
@@ -30,6 +32,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         static int _xMarg = 1;
         static int _yMarg = 1;
+        #endregion
 
         //So You cannot create another game manager
         private GameManager() { }
@@ -55,12 +58,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             if (_gameStateCheck == 0)
             {
-                endless.Intialize();
+                endless.Intialize(endless._path);
+                endless.PlayerSpawning();
                 endless.Endless();
             }
             else if(_gameStateCheck == 1)
             {
-                adventure.Intialize();
+                adventure.Intialize(adventure.levels[0]);
+                adventure.PlayerSpawning();
                 adventure.Adventure();
             }
             else
@@ -159,7 +164,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
                         em._health.Heal(5);
                     }
                 }
-
 
             }
         }

@@ -12,8 +12,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public static int _xMarg = 1;
         public static int _yMarg = 1;
 
-        public virtual void Intialize()
+        public virtual void Intialize(string path)
         {
+            _path = path;
             GameManager.Instance._gameMap = new Map(_path);
             GameManager.Instance._gameMap.LoadMap();
             GameManager.Instance._gameMap.DrawMap();
@@ -34,14 +35,17 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 }
             }
 
-            //Creates player properly, then sets the spot as occupied amd shows your hud
-            GameManager.Instance._gamePlayer = new Player(name: GameManager.Instance._writtenName, maxHealth: 100, startingXPos: GameManager.Instance._randomXPosition, startingYPos: GameManager.Instance._randomYPosition);
-            GameManager.Instance._gameMap._isOccupied[GameManager.Instance._gamePlayer._position._yPos, GameManager.Instance._gamePlayer._position._xPos] = true;
-
-
             GameManager.Instance.spawner.EnemySpawning(1, 26);
             GameManager.Instance.spawner.CollectablesSpawning(1, 26);
         }
+
+        public virtual void PlayerSpawning()
+        {
+            //Creates player properly, then sets the spot as occupied amd shows your hud
+            GameManager.Instance._gamePlayer = new Player(name: GameManager.Instance._writtenName, maxHealth: 100, startingXPos: GameManager.Instance._randomXPosition, startingYPos: GameManager.Instance._randomYPosition);
+            GameManager.Instance._gameMap._isOccupied[GameManager.Instance._gamePlayer._position._yPos, GameManager.Instance._gamePlayer._position._xPos] = true;
+        }
+
         public void ProcessInput()
         {
             if (GameManager.Instance._currentTurn == 0) return;
