@@ -11,7 +11,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class Map
     {
-        Dictionary<char, ConsoleColor> _writtenMap = new Dictionary<char, ConsoleColor>();
+        public Dictionary<char, ConsoleColor> _writtenMap = new Dictionary<char, ConsoleColor>();
         public string _path = "";
         public string[] _inGameMap;
 

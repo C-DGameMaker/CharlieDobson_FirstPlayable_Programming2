@@ -48,7 +48,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             //Runs through and lets you buy items/Continue, will check to make sure you have enough before buying.
             while (itemBought == ConsoleKey.NoName)
             {
-                itemBought = Console.ReadKey().Key;
+                itemBought = Console.ReadKey(true).Key;
 
                 if(itemBought == ConsoleKey.NumPad1 || itemBought == ConsoleKey.D1)
                 {

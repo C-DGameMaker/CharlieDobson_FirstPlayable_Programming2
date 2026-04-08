@@ -30,6 +30,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public int _randomXPosition;
         public int _randomYPosition;
 
+        public bool replayAgain = true;
+
         static int _xMarg = 1;
         static int _yMarg = 1;
         #endregion
