@@ -13,6 +13,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public Position _position;
         public int _xMovement = 0;
         public int _yMovement = 0;
+        public int xMarg = 1;
+        public int yMarg = 1;
 
         public string _hudString;
 
@@ -48,6 +50,23 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public virtual void DrawCharacter(int xMarg, int yMarg)
         {
             Console.SetCursorPosition(_position._xPos + xMarg, _position._yPos + yMarg);
+        }
+
+        public void UpdateTile(int xPos, int yPos)
+        {
+            Console.SetCursorPosition(xPos + xMarg, yPos + yMarg);
+            char mapTile = GameManager.Instance._gameMap._inGameMap[yPos][xPos];
+            if (GameManager.Instance._gameMap._writtenMap.ContainsKey(mapTile))
+            {
+                ConsoleColor _mapColor;
+                _mapColor = GameManager.Instance._gameMap._writtenMap[mapTile];
+                Console.BackgroundColor = _mapColor;
+                Console.ForegroundColor = _mapColor;
+            }
+
+            Console.Write(mapTile);
+            Console.ResetColor();
+
         }
 
 

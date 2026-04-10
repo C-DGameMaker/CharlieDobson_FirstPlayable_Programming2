@@ -32,6 +32,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
             GameManager.Instance.currentEnemiesKilled = 0;
 
+            GameManager.Instance._gameMap.DrawMap();
+
             while (GameManager.Instance._isDead == false && gameFinished == false)
             {
                 ProcessInput();

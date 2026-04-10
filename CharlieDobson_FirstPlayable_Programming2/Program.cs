@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
@@ -12,6 +14,11 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         static void Main(string[] args)
         {
+            int width = 100;
+            int height = 25;
+            Console.SetWindowSize(width, height);
+            Console.SetBufferSize(width, height);
+
             //Lets you make a name for the player
             Console.WriteLine("PLEASE INSERT A NAME FOR YOUR JOURNEY");
             GameManager.Instance._writtenName = Console.ReadLine();
@@ -30,11 +37,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 gameStart = Console.ReadKey(true).Key;
                 if (gameStart == ConsoleKey.E)
                 {
+                    Console.Clear();
                     GameManager.Instance._gameStateCheck = 0;
                     break;
                 }
                 else if (gameStart == ConsoleKey.A)
                 {
+                    Console.Clear();
                     GameManager.Instance._gameStateCheck = 1;
                     break;
                 }
@@ -58,7 +67,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine("Collect gold from $ collectables or from enemies dying.");
             Console.WriteLine("Kill a certain amount of enemies(the red guys) to progress");
             Console.WriteLine("Tiles with a + will heal you.");
-            Console.WriteLine("Water (blue) will damage you, Mountains (light grey) are impassable, and forests (dark green) have a chance to heal you or harm you.");
+            Console.WriteLine("Water (blue) will damage you,\nMountains (light grey) are impassable,\nand forests (dark green) have a chance to heal you or harm you.");
         }
 
         //Start Menu

@@ -21,8 +21,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.Clear();
 
             GameManager.Instance._gameMap.DrawMapButAnimated();
-            Console.ReadKey(true);
-            Console.Clear();
 
             GameManager.Instance.spawner.EnemySpawning(1, 26);
             GameManager.Instance.spawner.CollectablesSpawning(1, 26);
@@ -103,8 +101,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         //Draws the game
         public virtual void Draw()
         {
-            Console.SetCursorPosition(0, 0);
-            GameManager.Instance._gameMap.DrawMap();
+            Console.SetCursorPosition(0, GameManager.Instance._gameMap._mapHeight + 1);
             Console.WriteLine();
             Console.WriteLine($"Current Turn: {GameManager.Instance._currentTurn}");
             Console.WriteLine($"Current Goal:{GameManager.Instance.currentEnemiesKilled}/{GameManager.Instance.totalEnemiesBoundary}");

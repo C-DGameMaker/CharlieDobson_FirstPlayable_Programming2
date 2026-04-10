@@ -65,6 +65,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     if (GameManager.Instance._gameMap._isOccupied[currentY, currentX] == false)
                     {
                         GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = false;
+                        UpdateTile(_position._xPos, _position._yPos);
                         ChangePosition(movementX: currentX, movementY: currentY);
                         GameManager.Instance._gameMap._isOccupied[_position._yPos, _position._xPos] = true;
                     }

@@ -26,6 +26,8 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.WriteLine($"Have {GameManager.Instance.totalEnemiesBoundary} enemies die to continue");
             Console.ReadKey(true);
             Console.Clear();
+
+            GameManager.Instance._gameMap.DrawMap();
             while (GameManager.Instance.replayAgain == true)
             {
                 while (GameManager.Instance._isDead == false)
