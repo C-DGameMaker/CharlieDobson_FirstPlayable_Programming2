@@ -10,14 +10,12 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class EndlessMode : GameMode
     {
-        public int totalEnemyKills;
-        public int enemyKillsBoundary;
 
         public Shop shop = new Shop(100, 125, 300);
         public override void Intialize(string path)
         {
-            totalEnemyKills = 0;
-            enemyKillsBoundary = 10;
+            GameManager.Instance.currentEnemiesKilled = 0;
+            GameManager.Instance.totalEnemiesBoundary = 10;
 
             _path = "MapFile.txt";
             base.Intialize(_path);
@@ -25,7 +23,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public void Endless()
         {
             
-            Console.WriteLine($"Kill {enemyKillsBoundary} to continue");
+            Console.WriteLine($"Have {GameManager.Instance.totalEnemiesBoundary} enemies die to continue");
             Console.ReadKey(true);
             Console.Clear();
             while (GameManager.Instance.replayAgain == true)
@@ -76,16 +74,16 @@ namespace CharlieDobson_FirstPlayable_Programming2
             GameManager.Instance.DeathCheck();
             GameManager.Instance._currentTurn++;
 
-            if (totalEnemyKills >= enemyKillsBoundary)
+            if (GameManager.Instance.currentEnemiesKilled >= GameManager.Instance.totalEnemiesBoundary)
             {
                 Console.Clear();
                 shop.DisplayShop();
                 shop.Buy();
                 Console.ReadKey(true);
                 Console.Clear();
-                totalEnemyKills = 0;
-                enemyKillsBoundary += 10;
-                Console.WriteLine($"Kill {enemyKillsBoundary} to continue");
+                GameManager.Instance.currentEnemiesKilled = 0;
+                GameManager.Instance.totalEnemiesBoundary += 10;
+                Console.WriteLine($"Have {GameManager.Instance.totalEnemiesBoundary} enmeies die to continue");
                 Console.ReadKey(true);
                 Console.Clear();
                 

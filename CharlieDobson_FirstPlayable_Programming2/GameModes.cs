@@ -107,6 +107,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             GameManager.Instance._gameMap.DrawMap();
             Console.WriteLine();
             Console.WriteLine($"Current Turn: {GameManager.Instance._currentTurn}");
+            Console.WriteLine($"Current Goal:{GameManager.Instance.currentEnemiesKilled}/{GameManager.Instance.totalEnemiesBoundary}");
             GameManager.Instance.huds.PrintHUDStrings();
             Console.WriteLine();
 

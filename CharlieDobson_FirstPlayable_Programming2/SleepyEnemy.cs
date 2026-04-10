@@ -24,7 +24,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public override void DrawCharacter(int xMarg, int yMarg)
         {
             base.DrawCharacter(xMarg, yMarg);
-            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.BackgroundColor = ConsoleColor.DarkRed;
             Console.Write("Z");
         }
 

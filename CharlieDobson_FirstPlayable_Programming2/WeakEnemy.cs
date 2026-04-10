@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
-    internal class FastEnemy : Enemy
+    internal class WeakEnemy : Enemy
     {
-        int _speed = 2;
-        public FastEnemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
+        public WeakEnemy(int _maxHealth, int _startingXPos, int _startingYPos) : base(_maxHealth, _startingXPos, _startingYPos)
         {
-            _health = new Health(_maxHealth);
+            _health = new Health(_maxHealth/2);
             _position = new Position(_startingXPos, _startingYPos);
         }
 

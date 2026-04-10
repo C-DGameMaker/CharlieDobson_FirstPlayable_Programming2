@@ -17,7 +17,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public int _mapHeight;
         public int _mapWidth;
-        public int _currentMap;
 
         public bool[,] _isOccupied;
 

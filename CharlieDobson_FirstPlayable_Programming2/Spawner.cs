@@ -39,7 +39,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 }
                 else if (_typeOfEnemy == 2)
                 {
-                    Enemy _newEnemy = new FastEnemy(_enemyHealth, GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition);
+                    Enemy _newEnemy = new WeakEnemy(_enemyHealth, GameManager.Instance._randomXPosition, GameManager.Instance._randomYPosition);
                     GameManager.Instance._gameMap._isOccupied[GameManager.Instance._randomYPosition, GameManager.Instance._randomXPosition] = true;
 
                     GameManager.Instance._enemies.Add(_newEnemy);

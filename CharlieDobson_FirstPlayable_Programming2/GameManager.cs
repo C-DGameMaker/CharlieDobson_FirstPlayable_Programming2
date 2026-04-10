@@ -25,15 +25,14 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public bool _isDead = false;
         public string _writtenName;
         public int _gameStateCheck;
+        public int currentEnemiesKilled;
+        public int totalEnemiesBoundary;
 
         public Random _random = new Random();
         public int _randomXPosition;
         public int _randomYPosition;
 
         public bool replayAgain = true;
-
-        static int _xMarg = 1;
-        static int _yMarg = 1;
         #endregion
 
         //So You cannot create another game manager
@@ -98,7 +97,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
             {
                 if(em._health.CurrentHealth == 0)
                 {
-                    adventure.enemyKills++;
+                    GameManager.Instance.currentEnemiesKilled++;
                     int _goldAmount = _random.Next(1, 11);
                     GameManager.Instance._gamePlayer.GetGold(_goldAmount);
 

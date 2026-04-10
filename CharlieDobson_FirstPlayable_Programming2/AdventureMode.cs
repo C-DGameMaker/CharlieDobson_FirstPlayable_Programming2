@@ -10,8 +10,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class AdventureMode : GameMode
     {
-        public int enemyKills;
-        public int enemyKillsBoundary;
         private int currentLevel;
 
         public bool gameFinished = false;
@@ -26,13 +24,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
         public void Adventure()
         {
-            enemyKillsBoundary = 10;
-            Console.WriteLine($"Kill {enemyKillsBoundary} Enemys to progress");
+            GameManager.Instance.totalEnemiesBoundary = 10;
+            Console.WriteLine($"Have {GameManager.Instance.totalEnemiesBoundary} enemies die to progress");
 
             Console.ReadKey(true);
             Console.Clear();
 
-            enemyKills = 0;
+            GameManager.Instance.currentEnemiesKilled = 0;
 
             while (GameManager.Instance._isDead == false && gameFinished == false)
             {
@@ -69,17 +67,17 @@ namespace CharlieDobson_FirstPlayable_Programming2
             GameManager.Instance.DeathCheck();
             GameManager.Instance._currentTurn++;
 
-            if(enemyKills >= enemyKillsBoundary)
+            if(GameManager.Instance.currentEnemiesKilled >= GameManager.Instance.totalEnemiesBoundary)
             {
                 Console.Clear();
                 shop.DisplayShop();
                 shop.Buy();
                 Console.ReadKey(true);
                 Console.Clear();
-                enemyKillsBoundary += 10;
-                enemyKills = 0;
+                GameManager.Instance.totalEnemiesBoundary += 10;
+                GameManager.Instance.currentEnemiesKilled = 0;
 
-                Console.WriteLine($"Kill {enemyKillsBoundary} Enemys to progress");
+                Console.WriteLine($"Have {GameManager.Instance.totalEnemiesBoundary} enemies die to progress");
                 Console.ReadKey(true);
                 Console.Clear();
                 currentLevel++;
