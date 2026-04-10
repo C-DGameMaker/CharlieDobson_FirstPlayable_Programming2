@@ -76,7 +76,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 shop.Buy();
                 Console.ReadKey(true);
                 Console.Clear();
-                enemyKillsBoundary++;
+                enemyKillsBoundary += 10;
                 enemyKills = 0;
 
                 Console.WriteLine($"Kill {enemyKillsBoundary} Enemys to progress");

@@ -24,6 +24,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.ReadKey(true);
             Console.Clear();
 
+            GameManager.Instance.spawner.EnemySpawning(1, 26);
+            GameManager.Instance.spawner.CollectablesSpawning(1, 26);
+        }
+
+        public virtual void PlayerSpawning()
+        {
+            GameManager.Instance._gamePlayer = default;
             while (true)
             {
                 GameManager.Instance._randomYPosition = GameManager.Instance._random.Next(1, GameManager.Instance._gameMap._mapHeight);
@@ -34,13 +41,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
                     break;
                 }
             }
-
-            GameManager.Instance.spawner.EnemySpawning(1, 26);
-            GameManager.Instance.spawner.CollectablesSpawning(1, 26);
-        }
-
-        public virtual void PlayerSpawning()
-        {
             //Creates player properly, then sets the spot as occupied amd shows your hud
             GameManager.Instance._gamePlayer = new Player(name: GameManager.Instance._writtenName, maxHealth: 100, startingXPos: GameManager.Instance._randomXPosition, startingYPos: GameManager.Instance._randomYPosition);
             GameManager.Instance._gameMap._isOccupied[GameManager.Instance._gamePlayer._position._yPos, GameManager.Instance._gamePlayer._position._xPos] = true;

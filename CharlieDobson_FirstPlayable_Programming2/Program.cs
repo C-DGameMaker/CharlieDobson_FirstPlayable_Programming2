@@ -20,27 +20,45 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.Clear();
 
             Console.WriteLine($"{GameManager.Instance._writtenName}'s Game");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            Tutorial();
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             StartMenu();
-            ConsoleKey gameStart = Console.ReadKey().Key;
-            if(gameStart == ConsoleKey.E)
+            ConsoleKey gameStart = ConsoleKey.NoName;
+            while(gameStart == ConsoleKey.NoName)
             {
-                GameManager.Instance._gameStateCheck = 0;
+                gameStart = Console.ReadKey(true).Key;
+                if (gameStart == ConsoleKey.E)
+                {
+                    GameManager.Instance._gameStateCheck = 0;
+                    break;
+                }
+                else if (gameStart == ConsoleKey.A)
+                {
+                    GameManager.Instance._gameStateCheck = 1;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("NOT ACCEPTABLE. PLEASE PICK ACCEPTABLE CHOICE!");
+                    gameStart = ConsoleKey.NoName;
+                }
             }
-            else if (gameStart == ConsoleKey.A)
-            {
-                GameManager.Instance._gameStateCheck = 1;
-            }
-            else
-            {
-                Console.WriteLine("NOT ACCEPTABLE. GOODBYE!");
-                Console.ReadKey(true);
-                Environment.Exit(0);
-            }
+            
             Console.Clear();
 
             //Startin stuff, just loads the map and does stuff. 
             GameManager.Instance.GamestateChecker();
 
+        }
+
+        public static void Tutorial()
+        {
+            Console.WriteLine("Use WSAD to control the * around.");
+            Console.WriteLine("Collect gold from $ collectables or from enemies dying.");
+            Console.WriteLine("Kill a certain amount of enemies(the red guys) to progress");
+            Console.WriteLine("Tiles with a + will heal you.");
+            Console.WriteLine("Water (blue) will damage you, Mountains (light grey) are impassable, and forests (dark green) have a chance to heal you or harm you.");
         }
 
         //Start Menu

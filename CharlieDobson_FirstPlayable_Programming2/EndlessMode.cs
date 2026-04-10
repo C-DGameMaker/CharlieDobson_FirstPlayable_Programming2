@@ -48,8 +48,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
 
                     if(playAgain == ConsoleKey.Y)
                     {
-                        GameManager.Instance._isDead = true;
+                        GameManager.Instance._isDead = false;
                         Intialize(_path);
+                        PlayerSpawning();
                         break;
                     }
                     else if(playAgain == ConsoleKey.N)
