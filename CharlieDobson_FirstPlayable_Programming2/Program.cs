@@ -19,6 +19,10 @@ namespace CharlieDobson_FirstPlayable_Programming2
             Console.SetWindowSize(width, height);
             Console.SetBufferSize(width, height);
 
+            Console.WriteLine("Before we begin, I have the window set to a speficic size for a reason.\nIf you resize it, and you break it, its on you.");
+            Console.ReadKey(true);
+            Console.Clear();
+
             //Lets you make a name for the player
             Console.WriteLine("PLEASE INSERT A NAME FOR YOUR JOURNEY");
             GameManager.Instance._writtenName = Console.ReadLine();
