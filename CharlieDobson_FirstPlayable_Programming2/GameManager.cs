@@ -98,7 +98,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 if(em._health.CurrentHealth == 0)
                 {
                     GameManager.Instance.currentEnemiesKilled++;
-                    int _goldAmount = _random.Next(1, 11);
+                    int _goldAmount = _random.Next(GameSettings.goldAmountMinimun, GameSettings.goldAmountMaximun);
                     GameManager.Instance._gamePlayer.GetGold(_goldAmount);
 
                     em._health.ResetHealth();
