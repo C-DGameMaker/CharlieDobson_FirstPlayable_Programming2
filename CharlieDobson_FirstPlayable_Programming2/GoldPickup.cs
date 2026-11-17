@@ -8,7 +8,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
 {
     internal class GoldPickup : Collectables
     {
-        int _goldAmount;
+        int _goldAmount = 0;
         public GoldPickup(int amount,int startingXPos, int startingYPos) : base(startingXPos, startingYPos)
         {
             _goldAmount = amount;

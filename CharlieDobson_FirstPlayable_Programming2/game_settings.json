@@ -1,1 +1,4 @@
-{"goldAmountMinimun":1,"goldAmountMaximun":10}
+﻿{
+  "goldAmountMinimun": 0,
+  "goldAmountMaximun": 0
+}

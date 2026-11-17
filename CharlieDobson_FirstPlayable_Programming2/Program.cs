@@ -17,9 +17,21 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         static void Main(string[] args)
         {
+            // Json stuff
             string jsonString = File.ReadAllText("game_settings.json");
-
+            // ...
+            Console.WriteLine("-------------");
+            Console.WriteLine(jsonString);
+            Console.WriteLine("-------------");
+            Console.ReadKey(true);
+            // ...
             GameManager.Instance.settings = JsonSerializer.Deserialize<GameSettings>(jsonString);
+            // ...
+            Console.WriteLine(GameManager.Instance.settings.goldAmountMinimun);
+            Console.WriteLine(GameManager.Instance.settings.goldAmountMaximun);
+            Console.ReadKey(true);
+            // ...
+
             Console.WriteLine("Before we begin, I have the window set to a speficic size for a reason.\nIf you resize it, and you break it, its on you.");
             Console.ReadKey(true);
             Console.Clear();
@@ -27,8 +39,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
             //Lets you make a name for the player
             Console.WriteLine("PLEASE INSERT A NAME FOR YOUR JOURNEY");
             GameManager.Instance._writtenName = Console.ReadLine();
-            
-            
 
             Console.Clear();
 
