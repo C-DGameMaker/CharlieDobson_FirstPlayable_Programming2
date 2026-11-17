@@ -19,10 +19,6 @@ namespace CharlieDobson_FirstPlayable_Programming2
         {
             string jsonString = File.ReadAllText("game_settings.json");
 
-            int width = 100;
-            int height = 25;
-            Console.SetWindowSize(width, height);
-            Console.SetBufferSize(width, height);
             GameManager.Instance.settings = JsonSerializer.Deserialize<GameSettings>(jsonString);
             Console.WriteLine("Before we begin, I have the window set to a speficic size for a reason.\nIf you resize it, and you break it, its on you.");
             Console.ReadKey(true);
