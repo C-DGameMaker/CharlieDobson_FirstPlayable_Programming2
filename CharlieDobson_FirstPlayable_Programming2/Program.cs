@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Drawing;
-using System.Runtime.InteropServices;
+using System.IO;
+using System.Diagnostics;
 
 namespace CharlieDobson_FirstPlayable_Programming2
 {
@@ -14,11 +17,13 @@ namespace CharlieDobson_FirstPlayable_Programming2
     {
         static void Main(string[] args)
         {
+            string jsonString = File.ReadAllText("game_settings.json");
+
             int width = 100;
             int height = 25;
             Console.SetWindowSize(width, height);
             Console.SetBufferSize(width, height);
-
+            GameManager.Instance.settings = JsonSerializer.Deserialize<GameSettings>(jsonString);
             Console.WriteLine("Before we begin, I have the window set to a speficic size for a reason.\nIf you resize it, and you break it, its on you.");
             Console.ReadKey(true);
             Console.Clear();
@@ -26,8 +31,9 @@ namespace CharlieDobson_FirstPlayable_Programming2
             //Lets you make a name for the player
             Console.WriteLine("PLEASE INSERT A NAME FOR YOUR JOURNEY");
             GameManager.Instance._writtenName = Console.ReadLine();
-
             
+            
+
             Console.Clear();
 
             Console.WriteLine($"{GameManager.Instance._writtenName}'s Game");

@@ -17,6 +17,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
         public EndlessMode endless = new EndlessMode();
         public AdventureMode adventure = new AdventureMode();
         public Spawner spawner = new Spawner();
+        public GameSettings settings = new GameSettings();
 
         public int _currentTurn = 0;
         public List<Enemy> _enemies = new List<Enemy>();
@@ -98,7 +99,7 @@ namespace CharlieDobson_FirstPlayable_Programming2
                 if(em._health.CurrentHealth == 0)
                 {
                     GameManager.Instance.currentEnemiesKilled++;
-                    int _goldAmount = _random.Next(GameSettings.goldAmountMinimun, GameSettings.goldAmountMaximun);
+                    int _goldAmount = _random.Next(settings.goldAmountMinimun, settings.goldAmountMaximun);
                     GameManager.Instance._gamePlayer.GetGold(_goldAmount);
 
                     em._health.ResetHealth();
